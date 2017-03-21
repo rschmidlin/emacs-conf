@@ -9,7 +9,7 @@
 (require 'use-package)
 
 ;; Configure proxy servers to be used
-(load-file ".emacs.d/proxy_conf.el")
+(load-file "~/.emacs.d/proxy_conf.el")
 
 ;; MELPA to my package-archives
 (require 'package)
@@ -153,7 +153,7 @@
   (let
       ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
     (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
-    (visit-tags-table (concat directory "TAGS")))
+    (visit-tags-table (concat directory "TAGS"))))
 
 (defun build-cscope (directory)
   (interactive "D")
