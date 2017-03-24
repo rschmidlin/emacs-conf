@@ -9,23 +9,9 @@
 (require 'use-package)
 
 ;; Configure proxy servers to be used
-<<<<<<< HEAD
-;; (setq url-proxy-services
-;;     '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-;;       ("http" . "my_http_proxy:80")
-;;       ("https" . "my_https_proxy:443")))
-
-;; (setq url-http-proxy-basic-auth-storage
-;;    (list (list "my_http_proxy:80"
-;;                (cons "Input your LDAP UID !"
-;;                      (base64-encode-string "USER:PASS")))))
-
-;; ;; Add MELPA to my package-archives
-=======
 (load-file "~/.emacs.d/proxy_conf.el")
 
 ;; MELPA to my package-archives
->>>>>>> 1c5b3264906f4edd6355d4555acbdf6acab487a3
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
@@ -160,13 +146,11 @@
 	     :ensure t
 	     :pin melpa-stable)
 
-<<<<<<< HEAD
 (use-package org
   :ensure t
   :pin org)
-=======
+
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
->>>>>>> 1c5b3264906f4edd6355d4555acbdf6acab487a3
 
  ; Functions to create Ctags and Cscope files
 (defun build-ctags (directory)
