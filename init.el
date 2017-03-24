@@ -9,6 +9,7 @@
 (require 'use-package)
 
 ;; Configure proxy servers to be used
+<<<<<<< HEAD
 ;; (setq url-proxy-services
 ;;     '(("no_proxy" . "^\\(localhost\\|10.*\\)")
 ;;       ("http" . "my_http_proxy:80")
@@ -20,6 +21,11 @@
 ;;                      (base64-encode-string "USER:PASS")))))
 
 ;; ;; Add MELPA to my package-archives
+=======
+(load-file "~/.emacs.d/proxy_conf.el")
+
+;; MELPA to my package-archives
+>>>>>>> 1c5b3264906f4edd6355d4555acbdf6acab487a3
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
@@ -108,6 +114,7 @@
     (global-set-key (kbd "M-0") 'xref-find-definitions)
     (global-set-key (kbd "M-ß") 'pop-tag-mark)
     (global-set-key (kbd "C-S-f") 'swiper)
+;    (define-key compilation-mode-map (kbd "M-9") 'next-error)
     ; Workaround AltGr supression
     (global-set-key (kbd "C-M-q") 'insert-commercial-at)
     (global-set-key (kbd "C-M-+") 'insert-tilde)
@@ -120,6 +127,7 @@
 (when (string= ergoemacs-keyboard-layout "programmer-dv")
   (global-set-key (kbd "M-}") 'split-window-horizontally)
   (global-set-key (kbd "M-3") 'split-window-vertically)
+  (global-set-key (kbd "M-+") 'compilation-next-error)
   (global-set-key (kbd "M-]") 'xref-find-definitions)
   (global-set-key (kbd "M-!") 'pop-tag-mark)
   (global-set-key (kbd "C-S-u") 'swiper))
@@ -152,20 +160,25 @@
 	     :ensure t
 	     :pin melpa-stable)
 
+<<<<<<< HEAD
 (use-package org
   :ensure t
   :pin org)
+=======
+(setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
+>>>>>>> 1c5b3264906f4edd6355d4555acbdf6acab487a3
 
  ; Functions to create Ctags and Cscope files
 (defun build-ctags (directory)
   (interactive "D")
-  (shell-command (concat "ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public -f " directory "TAGS " directory))
-  (visit-tags-table (concat directory "TAGS"))
-  (message "Tags built successfully for %s" directory))
+  (let
+      ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
+    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
+    (visit-tags-table (concat directory "TAGS"))))
 
 (defun build-cscope (directory)
   (interactive "D")
-  (call-process "sh" nil nil (get-buffer "*Messages*") "cscope-indexer" "-r" directory)
+  (call-process "sh" nil (get-buffer-create "process-output") t "cscope-indexer" "-r" directory)
   (cscope-set-initial-directory directory)
   (message (concat "Cscope file built successfully for " directory)))
 
