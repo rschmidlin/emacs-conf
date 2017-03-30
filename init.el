@@ -15,6 +15,7 @@
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ; Configure Emacs to use find and grep from MSYS
 (setenv "PATH"
@@ -154,6 +155,10 @@
 (use-package projectile
 	     :ensure t
 	     :pin melpa-stable)
+
+(use-package org
+  :ensure t
+  :pin org)
 
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 
