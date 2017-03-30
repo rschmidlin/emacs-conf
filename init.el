@@ -93,9 +93,16 @@
   (interactive)
   (insert "\\"))
 
+(defun insert-pipe()
+  "Insert a pipe before point."
+  (interactive)
+  (insert "|"))
+
 (when (string= ergoemacs-keyboard-layout "de")
     (global-set-key (kbd "M-4") 'split-window-horizontally)
     (global-set-key (kbd "M-$") 'split-window-vertically)
+    (global-set-key (kbd "M-9") 'tags-loop-continue)
+    (global-set-key (kbd "M-)") 'next-error)
     (global-set-key (kbd "M-0") 'xref-find-definitions)
     (global-set-key (kbd "M-ß") 'pop-tag-mark)
     (global-set-key (kbd "C-S-f") 'swiper)
@@ -107,11 +114,14 @@
     (global-set-key (kbd "C-M-8") 'insert-left-squared-bracket)
     (global-set-key (kbd "C-M-9") 'insert-right-squared-bracket)
     (global-set-key (kbd "C-M-0") 'insert-right-curly-brace)
-    (global-set-key (kbd "C-M-ß") 'insert-backslash))
+    (global-set-key (kbd "C-M-ß") 'insert-backslash)
+    (global-set-key (kbd "C-M-<") 'insert-pipe))
 
 (when (string= ergoemacs-keyboard-layout "programmer-dv")
   (global-set-key (kbd "M-}") 'split-window-horizontally)
   (global-set-key (kbd "M-3") 'split-window-vertically)
+  (global-set-key (kbd "M-+") 'tags-loop-continue)
+  (global-set-key (kbd "M-4") 'next-error)
   (global-set-key (kbd "M-+") 'compilation-next-error)
   (global-set-key (kbd "M-]") 'xref-find-definitions)
   (global-set-key (kbd "M-!") 'pop-tag-mark)
@@ -152,8 +162,8 @@
   (interactive "D")
   (let
       ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
-    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
-    (visit-tags-table (concat directory "TAGS"))))
+    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=GeneratedSources" "--exclude=Import" "--exclude=.git" "--exclude=public" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
+    (visit-tags-table (concat directory "/TAGS"))))
 
 (defun build-cscope (directory)
   (interactive "D")
