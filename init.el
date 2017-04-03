@@ -55,25 +55,36 @@
 ;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 ;(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
+(use-package monokai-theme
+	     :ensure t
+	     :pin melpa-stable
+	     :init
+	     (add-hook 'after-init-hook '(lambda () (load-theme 'monokai t)))	     
+	     ;; FIX: Invalid font in org-mode on Windows
+	     ;; (when (and sys/win32p (> emacs-major-version 24))
+	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
+             )
+
+
 (setq ergoemacs-keyboard-layout "de")
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
-;; (use-package ergoemacs-mode
-;; 	     :ensure t
-;; 	     :pin melpa-stable
-;; 	     :init
-;; 	     (setq ergoemacs-theme nil)
-;; 	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
-;; 	     (setq ergoemacs-keyboard-layout "de")
-;; 	     :config
-;; 	     (ergoemacs-mode 1))
+(use-package ergoemacs-mode
+	     :ensure t
+ 	     :pin melpa-stable
+ 	     :init
+ 	     (setq ergoemacs-theme nil)
+ 	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
+ 	     (setq ergoemacs-keyboard-layout "de")
+ 	     :config
+ 	     (ergoemacs-mode 1))
 
-(use-package xah-fly-keys
- :ensure t
- :pin melpa
- :config
- (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
+;(use-package xah-fly-keys
+; :ensure t
+; :pin melpa
+; :config
+; (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
  ;; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
- (xah-fly-keys 1))
+; (xah-fly-keys 1))
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
