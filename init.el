@@ -167,7 +167,7 @@
   (interactive "D")
   (let
       ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
-    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=GeneratedSources" "--exclude=Import" "--exclude=.git" "--exclude=public" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
+    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
     (visit-tags-table (concat directory "/TAGS"))))
 
 (defun build-cscope (directory)
