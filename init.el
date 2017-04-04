@@ -15,6 +15,7 @@
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ; Configure Emacs to use find and grep from MSYS
@@ -27,6 +28,13 @@
 ; Require better-defaults
 (add-to-list 'load-path "~/.emacs.d/better-defaults")
 (require 'better-defaults)
+
+; Use which-key
+(use-package which-key
+	     :ensure t
+	     :pin melpa
+	     :config
+	     (which-key-mode))
 
 ; Use IVY
 (use-package counsel
@@ -47,16 +55,36 @@
 ;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 ;(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
-; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
-(use-package ergoemacs-mode
+(use-package monokai-theme
 	     :ensure t
 	     :pin melpa-stable
 	     :init
-	     (setq ergoemacs-theme nil)
-	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
-	     (setq ergoemacs-keyboard-layout "de")
-	     :config
-	     (ergoemacs-mode 1))
+	     (add-hook 'after-init-hook '(lambda () (load-theme 'monokai t)))	     
+	     ;; FIX: Invalid font in org-mode on Windows
+	     ;; (when (and sys/win32p (> emacs-major-version 24))
+	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
+             )
+
+
+(setq ergoemacs-keyboard-layout "de")
+; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
+(use-package ergoemacs-mode
+	     :ensure t
+ 	     :pin melpa-stable
+ 	     :init
+ 	     (setq ergoemacs-theme nil)
+ 	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
+ 	     (setq ergoemacs-keyboard-layout "de")
+ 	     :config
+ 	     (ergoemacs-mode 1))
+
+;(use-package xah-fly-keys
+; :ensure t
+; :pin melpa
+; :config
+; (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
+ ;; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
+; (xah-fly-keys 1))
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
