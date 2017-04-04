@@ -35,7 +35,7 @@
 	     :init
 	     (setq ivy-use-virtual-buffers t)
 	     (setq ivy-count-format "(%d/%d) ")
-	     (setq magit-completing-read-function 'ivy-complete-read)
+	     (setq magit-completing-read-function 'ivy-completing-read)
 	     (setq projectile-completion-system 'ivy)
 	     :config
 	     (ivy-mode 1))
