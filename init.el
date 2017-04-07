@@ -32,7 +32,7 @@
 ; Use which-key
 (use-package which-key
 	     :ensure t
-	     :pin melpa
+	     :pin melpa-stable
 	     :config
 	     (which-key-mode))
 
@@ -65,6 +65,11 @@
 	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
              )
 
+(use-package ergoemacs-status
+  :ensure t
+  :pin melpa
+  :config
+  (ergoemacs-status-mode))  
 
 (setq ergoemacs-keyboard-layout "de")
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
