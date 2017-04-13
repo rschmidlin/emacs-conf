@@ -25,6 +25,10 @@
 	 "C:\\MinGW\\msys\\1.0\\bin;"
 	 (getenv "PATH")))
 
+;; Install cygwin-mount to work with Cygwin paths
+(add-to-list 'load-path "~/.emacs.d/cygwin-mount")
+(require 'cygwin-mount)
+
 ; Require better-defaults
 (add-to-list 'load-path "~/.emacs.d/better-defaults")
 (require 'better-defaults)
@@ -160,6 +164,9 @@
   (global-set-key (kbd "M-]") 'xref-find-definitions)
   (global-set-key (kbd "M-!") 'pop-tag-mark)
   (global-set-key (kbd "C-S-u") 'swiper))
+
+;; Configure C-style
+(load-file "~/.emacs.d/cstyle.el")
 
 ; Use cscope
 (use-package xcscope
