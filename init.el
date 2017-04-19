@@ -25,6 +25,10 @@
 	 "C:\\MinGW\\msys\\1.0\\bin;"
 	 (getenv "PATH")))
 
+;; Install cygwin-mount to work with Cygwin paths
+(add-to-list 'load-path "~/.emacs.d/cygwin-mount")
+(require 'cygwin-mount)
+
 ; Require better-defaults
 (add-to-list 'load-path "~/.emacs.d/better-defaults")
 (require 'better-defaults)
@@ -32,7 +36,7 @@
 ; Use which-key
 (use-package which-key
 	     :ensure t
-	     :pin melpa
+	     :pin melpa-stable
 	     :config
 	     (which-key-mode))
 
@@ -43,7 +47,7 @@
 	     :init
 	     (setq ivy-use-virtual-buffers t)
 	     (setq ivy-count-format "(%d/%d) ")
-	     (setq magit-completing-read-function 'ivy-complete-read)
+	     (setq magit-completing-read-function 'ivy-completing-read)
 	     (setq projectile-completion-system 'ivy)
 	     :config
 	     (ivy-mode 1))
@@ -65,6 +69,11 @@
 	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
              )
 
+(use-package ergoemacs-status
+  :ensure t
+  :pin melpa
+  :config
+  (ergoemacs-status-mode))  
 
 (setq ergoemacs-keyboard-layout "de")
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
@@ -156,6 +165,9 @@
   (global-set-key (kbd "M-!") 'pop-tag-mark)
   (global-set-key (kbd "C-S-u") 'swiper))
 
+;; Configure C-style
+(load-file "~/.emacs.d/cstyle.el")
+
 ; Use cscope
 (use-package xcscope
 	     :ensure t
@@ -198,7 +210,7 @@
   (interactive "D")
   (let
       ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
-    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=GeneratedSources" "--exclude=Import" "--exclude=.git" "--exclude=public" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
+    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
     (visit-tags-table (concat directory "/TAGS"))))
 
 (defun build-cscope (directory)
