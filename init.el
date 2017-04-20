@@ -1,4 +1,3 @@
-;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
@@ -28,6 +27,8 @@
 ;; Install cygwin-mount to work with Cygwin paths
 (add-to-list 'load-path "~/.emacs.d/cygwin-mount")
 (require 'cygwin-mount)
+;; (add-to-list 'load-path "~/.emacs.d/setup-cygwin")
+;; (require 'setup-cygwin)
 
 ; Require better-defaults
 (add-to-list 'load-path "~/.emacs.d/better-defaults")
@@ -168,6 +169,17 @@
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
 
+; Enable CMake major mode
+(use-package cmake-mode
+  :ensure t
+  :pin melpa-stable)
+
+(use-package cmake-font-lock
+  :ensure t
+  :pin melpa
+  :init
+  (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
+
 ; Use cscope
 (use-package xcscope
 	     :ensure t
@@ -185,6 +197,14 @@
 	     :pin melpa-stable
 	     :config
 	     (ac-config-default))
+
+;; Auto-complete-mode-hook
+;; When the `auto-complete-mode' is on, and when a word completion
+;; is in process, Ctrl+s does `ac-isearch'.
+;; This fixes it.
+;; (auto-complete-mode-hook
+;;  ((isearch-forward ac-isearch ac-completing-map)
+;;   ("C-s" nil ac-completing-map)))
 
 ; Keybinding for using MaGit
 (use-package magit
@@ -232,7 +252,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (persistent-soft projectile magit auto-complete xcscope ergoemacs-mode counsel))))
+    (cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope ergoemacs-mode counsel))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
