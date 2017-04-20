@@ -195,6 +195,9 @@
 (use-package auto-complete
 	     :ensure t
 	     :pin melpa-stable
+             :init
+             (setq ac-auto-show-menu    0.1)
+             (setq ac-delay             0.5)
 	     :config
 	     (ac-config-default))
 
