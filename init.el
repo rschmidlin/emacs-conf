@@ -192,14 +192,14 @@
 	     (cscope-setup))
 
 ; Use auto-complete
-(use-package auto-complete
-	     :ensure t
-	     :pin melpa-stable
-             :init
-             (setq ac-auto-show-menu    0.1)
-             (setq ac-delay             0.5)
-	     :config
-	     (ac-config-default))
+;; (use-package auto-complete
+;; 	     :ensure t
+;; 	     :pin melpa-stable
+;;              :init
+;;              (setq ac-auto-show-menu    0.1)
+;;              (setq ac-delay             0.5)
+;; 	     :config
+;; 	     (ac-config-default))
 
 ;; Auto-complete-mode-hook
 ;; When the `auto-complete-mode' is on, and when a word completion
@@ -225,6 +225,15 @@
 
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 
+ ; Generate cscope.files from a directory list
+(defun build-cscope-file (directories)
+  "Generate cscope.file for a list of DIRECTORIES."
+  (dolist (dir directories)
+	(shell-command (concat "find " dir " -name *.cpp > cscope.files" ))
+	(shell-command (concat "find " dir " -name *.hpp >> cscope.files" ))
+	(shell-command (concat "find " dir " -name *.c >> cscope.files" ))
+	(shell-command (concat "find " dir " -name *.h >> cscope.files" ))))
+
  ; Functions to create Ctags and Cscope files
 (defun build-ctags (directory)
   (interactive "D")
@@ -233,11 +242,21 @@
     (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
     (visit-tags-table (concat directory "/TAGS"))))
 
+(defun build-ctags-from-list (filename)
+  (interactive "f")
+  (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename)
+  (visit-tags-table (concat "TAGS")))
+
 (defun build-cscope (directory)
   (interactive "D")
   (call-process "sh" nil (get-buffer-create "process-output") t "cscope-indexer" "-r" directory)
   (cscope-set-initial-directory directory)
   (message (concat "Cscope file built successfully for " directory)))
+
+(defun build-cscope-from-list (filename)
+  (interactive "f")
+  (call-process "cscope" nil (get-buffer-create "process-output") t "-b" "-i" filename)
+  (message (concat "Cscope file built successfully for " filename)))
 
 ; Allow (a) to be used in dired
 (put 'dired-find-alternate-file 'disabled nil)
