@@ -228,8 +228,9 @@
  ; Generate cscope.files from a directory list
 (defun build-cscope-file (directories)
   "Generate cscope.file for a list of DIRECTORIES."
+  (shell-command "rm -rf cscope.files")
   (dolist (dir directories)
-	(shell-command (concat "find " dir " -name *.cpp > cscope.files" ))
+	(shell-command (concat "find " dir " -name *.cpp >> cscope.files" ))
 	(shell-command (concat "find " dir " -name *.hpp >> cscope.files" ))
 	(shell-command (concat "find " dir " -name *.c >> cscope.files" ))
 	(shell-command (concat "find " dir " -name *.h >> cscope.files" ))))
