@@ -223,6 +223,15 @@
   :ensure t
   :pin org)
 
+(setq redisplay-dont-pause t
+	  scroll-margin 1
+	  scroll-step 1
+	  scroll-conservatively 10000
+	  scroll-preserve-screen-position 1)
+
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 
  ; Generate cscope.files from a directory list
