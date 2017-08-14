@@ -235,14 +235,21 @@
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 
  ; Generate cscope.files from a directory list
-(defun build-cscope-file (directories)
-  "Generate cscope.file for a list of DIRECTORIES."
-  (shell-command "rm -rf cscope.files")
-  (dolist (dir directories)
-	(shell-command (concat "find " dir " -name *.cpp >> cscope.files" ))
-	(shell-command (concat "find " dir " -name *.hpp >> cscope.files" ))
-	(shell-command (concat "find " dir " -name *.c >> cscope.files" ))
-	(shell-command (concat "find " dir " -name *.h >> cscope.files" ))))
+(defun build-cscope-file (directories &optional target-directory)
+  "Generate cscope.file for a list of DIRECTORIES, optionally in TARGET-DIRECTORY."
+  (let
+	  (
+	   (file (if target-directory
+				 (concat target-directory "/cscope.files")
+			   "cscope.files"))
+	   )
+	(shell-command (concat "rm -rf " file))
+	(dolist (dir directories)
+	  (shell-command (concat "find " dir " -name *.cpp >> " file ))
+	  (shell-command (concat "find " dir " -name *.hpp >> " file ))
+	  (shell-command (concat "find " dir " -name *.c >> " file   ))
+	  (shell-command (concat "find " dir " -name *.h >> " file   )))
+	))
 
  ; Functions to create Ctags and Cscope files
 (defun build-ctags (directory)
@@ -252,10 +259,12 @@
     (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
     (visit-tags-table (concat directory "/TAGS"))))
 
-(defun build-ctags-from-list (filename)
+(defun build-ctags-from-list (filename &optional target-directory)
   (interactive "f")
-  (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename)
-  (visit-tags-table (concat "TAGS")))
+  (if target-directory
+	  (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename "-f" (concat target-directory "/TAGS"))
+	(call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename)))
+	
 
 (defun build-cscope (directory)
   (interactive "D")
@@ -263,10 +272,13 @@
   (cscope-set-initial-directory directory)
   (message (concat "Cscope file built successfully for " directory)))
 
-(defun build-cscope-from-list (filename)
+(defun build-cscope-from-list (filename &optional target-directory)
   (interactive "f")
-  (call-process "cscope" nil (get-buffer-create "process-output") t "-b" "-i" filename)
-  (message (concat "Cscope file built successfully for " filename)))
+  (if target-directory
+	  (let ((default-directory target-directory))
+		(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
+	(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
+	(message (concat "Cscope file built successfully for " filename)))
 
 ; Allow (a) to be used in dired
 (put 'dired-find-alternate-file 'disabled nil)
