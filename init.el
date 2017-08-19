@@ -88,6 +88,15 @@
  	     :config
  	     (ergoemacs-mode 1))
 
+(use-package god-mode
+  :ensure t
+  :pin melpa
+  :config
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil)
+  (global-set-key (kbd "<escape>") 'god-mode-all)
+  (god-mode))
+
 ;(use-package xah-fly-keys
 ; :ensure t
 ; :pin melpa
