@@ -94,16 +94,15 @@
   :config
   (setq god-exempt-major-modes nil)
   (setq god-exempt-predicates nil)
-  (global-set-key (kbd "<escape>") 'god-mode-all)
-  (god-mode))
+  (global-set-key (kbd "<escape>") 'god-local-mode))
 
-;(use-package xah-fly-keys
-; :ensure t
-; :pin melpa
-; :config
-; (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
- ;; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
-; (xah-fly-keys 1))
+;; (use-package xah-fly-keys
+;;   :ensure t
+;;   :pin melpa
+;;   :config
+;;   (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
+;; 										; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
+;;   (xah-fly-keys 1))
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
