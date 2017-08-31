@@ -22,6 +22,7 @@
 	(concat
 	 ;; Change this with your path to MSYS bin directory
 	 "C:\\MinGW\\msys\\1.0\\bin;"
+	 "/usr/local/bin:"
 	 (getenv "PATH")))
 
 ;; Install cygwin-mount to work with Cygwin paths
@@ -60,6 +61,13 @@
 ;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 ;(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
+(use-package neotree
+  :ensure t
+  :pin melpa-stable
+  :bind ("M-1" . neotree-toggle)
+  :init
+  (setq neo-theme 'nerd))
+
 (use-package monokai-theme
 	     :ensure t
 	     :pin melpa-stable
@@ -70,11 +78,17 @@
 	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
              )
 
+(use-package company
+  :ensure t
+  :pin melpa-stable
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+
 (use-package ergoemacs-status
   :ensure t
   :pin melpa
   :config
-  (ergoemacs-status-mode))  
+  (ergoemacs-status-mode))
 
 (setq ergoemacs-keyboard-layout "de")
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
@@ -91,10 +105,10 @@
 (use-package god-mode
   :ensure t
   :pin melpa
-  :config
+  :bind ("<escape>" . god-local-mode)
+  :init
   (setq god-exempt-major-modes nil)
-  (setq god-exempt-predicates nil)
-  (global-set-key (kbd "<escape>") 'god-local-mode))
+  (setq god-exempt-predicates nil))
 
 ;; (use-package xah-fly-keys
 ;;   :ensure t
@@ -177,6 +191,10 @@
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
 
+(use-package flycheck
+  :ensure t
+  :config (global-flycheck-mode))
+
 ; Enable CMake major mode
 (use-package cmake-mode
   :ensure t
@@ -226,6 +244,15 @@
 (use-package projectile
 	     :ensure t
 	     :pin melpa-stable)
+
+(use-package ggtags
+  :ensure t
+  :pin melpa-stable
+  :init
+  (add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1)))))
 
 (use-package org
   :ensure t
@@ -297,6 +324,8 @@
 ; Avoid splash screen
 (setq inhibit-splash-screen t)
 
+;(setq python-shell-native-complete nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -304,7 +333,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope ergoemacs-mode counsel))))
+	(flycheck ggtags neotree cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope ergoemacs-mode counsel))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
