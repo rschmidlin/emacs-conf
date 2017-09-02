@@ -94,7 +94,7 @@
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
 (use-package ergoemacs-mode
 	     :ensure t
- 	     :pin melpa-stable
+ 	     :pin melpa
  	     :init
  	     (setq ergoemacs-theme nil)
  	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
@@ -333,7 +333,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(flycheck ggtags neotree cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope ergoemacs-mode counsel))))
+	(flycheck ggtags neotree cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope counsel))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
