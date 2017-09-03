@@ -17,49 +17,38 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
-; Configure Emacs to use find and grep from MSYS
-(setenv "PATH"
-	(concat
-	 ;; Change this with your path to MSYS bin directory
-	 "C:\\MinGW\\msys\\1.0\\bin;"
-	 "/usr/local/bin:"
-	 (getenv "PATH")))
+; Configure Emacs according to operating system
+(load-file "~/.emacs.d/operating_system.el")
 
-;; Install cygwin-mount to work with Cygwin paths
-(add-to-list 'load-path "~/.emacs.d/cygwin-mount")
-(require 'cygwin-mount)
-;; (add-to-list 'load-path "~/.emacs.d/setup-cygwin")
-;; (require 'setup-cygwin)
+; Enable command completion system for Emacs
+(load-file "~/.emacs.d/commands_completion.el")
 
-; Require better-defaults
-(add-to-list 'load-path "~/.emacs.d/better-defaults")
-(require 'better-defaults)
+; Theme selection
+(load-file "~/.emacs.d/themes.el")
 
-; Use which-key
-(use-package which-key
+; Behavior/window configuration
+(load-file "~/.emacs.d/generic_behavior.el")
+
+; Select input-interface system 
+(setq ergoemacs-keyboard-layout "de")
+(load-file "~/.emacs.d/input.el")
+
+; Enable IDE features, static analysis / code completion
+(load-file "~/.emacs.d/syntax.el")
+
+; Configure indexers - ctags/cscope/ggtags
+(setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
+(load-file "~/.emacs.d/indexers.el")
+
+(use-package projectile
+	     :ensure t
+	     :pin melpa-stable)
+
+; Keybinding for using MaGit
+(use-package magit
 	     :ensure t
 	     :pin melpa-stable
-	     :config
-	     (which-key-mode))
-
-; Use IVY
-(use-package counsel
-	     :ensure t
-	     :pin melpa-stable
-	     :init
-	     (setq ivy-use-virtual-buffers t)
-	     (setq ivy-count-format "(%d/%d) ")
-	     (setq magit-completing-read-function 'ivy-completing-read)
-	     (setq projectile-completion-system 'ivy)
-	     :config
-	     (ivy-mode 1))
-;(global-set-key (kbd "M-a") 'counsel-M-x)
-;(global-set-key (kbd "C-o") 'counsel-find-file)
-;(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-;(global-set-key (kbd "<f1> l") 'counsel-find-library)
-;(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-;(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+	     :bind ("C-x g" . magit-status))
 
 (use-package neotree
   :ensure t
@@ -68,132 +57,8 @@
   :init
   (setq neo-theme 'nerd))
 
-(use-package monokai-theme
-	     :ensure t
-	     :pin melpa-stable
-	     :init
-	     (add-hook 'after-init-hook '(lambda () (load-theme 'monokai t)))	     
-	     ;; FIX: Invalid font in org-mode on Windows
-	     ;; (when (and sys/win32p (> emacs-major-version 24))
-	     ;;   (add-hook 'window-setup-hook '(lambda () (load-theme 'monokai t))))
-             )
-
-(use-package company
-  :ensure t
-  :pin melpa-stable
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
-
-(use-package ergoemacs-status
-  :ensure t
-  :pin melpa
-  :config
-  (ergoemacs-status-mode))
-
-(setq ergoemacs-keyboard-layout "de")
-; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
-(use-package ergoemacs-mode
-	     :ensure t
- 	     :pin melpa
- 	     :init
- 	     (setq ergoemacs-theme nil)
- 	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
- 	     (setq ergoemacs-keyboard-layout "de")
- 	     :config
- 	     (ergoemacs-mode 1))
-
-(use-package god-mode
-  :ensure t
-  :pin melpa
-  :bind ("<escape>" . god-local-mode)
-  :init
-  (setq god-exempt-major-modes nil)
-  (setq god-exempt-predicates nil))
-
-;; (use-package xah-fly-keys
-;;   :ensure t
-;;   :pin melpa
-;;   :config
-;;   (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
-;; 										; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
-;;   (xah-fly-keys 1))
-
-; Specializations for Ergoemacs mode
-(defun insert-commercial-at()
-  "Insert a commercial at before point."
-  (interactive)
-  (insert "@"))
-
-(defun insert-tilde()
-  "Insert a tilde before point."
-  (interactive)
-  (insert "~"))
-
-(defun insert-left-curly-brace()
-  "Insert a left curly brace before point."
-  (interactive)
-  (insert "{"))
-
-(defun insert-right-curly-brace()
-  "Insert a right curly brace before point."
-  (interactive)
-  (insert "}"))
-
-(defun insert-left-squared-bracket()
-  "Insert a left square bracket before point."
-  (interactive)
-  (insert "["))
-
-(defun insert-right-squared-bracket()
-  "Insert a right square bracket before point."
-  (interactive)
-  (insert "]"))
-
-(defun insert-backslash()
-  "Insert a backslash before point."
-  (interactive)
-  (insert "\\"))
-
-(defun insert-pipe()
-  "Insert a pipe before point."
-  (interactive)
-  (insert "|"))
-
-(when (string= ergoemacs-keyboard-layout "de")
-    (global-set-key (kbd "M-4") 'split-window-horizontally)
-    (global-set-key (kbd "M-$") 'split-window-vertically)
-    (global-set-key (kbd "M-9") 'tags-loop-continue)
-    (global-set-key (kbd "M-)") 'next-error)
-    (global-set-key (kbd "M-0") 'xref-find-definitions)
-    (global-set-key (kbd "M-ß") 'xref-pop-marker-stack)
-    (global-set-key (kbd "C-S-f") 'swiper)
-;    (define-key compilation-mode-map (kbd "M-9") 'next-error)
-    ; Workaround AltGr supression
-    (global-set-key (kbd "C-M-q") 'insert-commercial-at)
-    (global-set-key (kbd "C-M-+") 'insert-tilde)
-    (global-set-key (kbd "C-M-7") 'insert-left-curly-brace)
-    (global-set-key (kbd "C-M-8") 'insert-left-squared-bracket)
-    (global-set-key (kbd "C-M-9") 'insert-right-squared-bracket)
-    (global-set-key (kbd "C-M-0") 'insert-right-curly-brace)
-    (global-set-key (kbd "C-M-ß") 'insert-backslash)
-    (global-set-key (kbd "C-M-<") 'insert-pipe))
-
-(when (string= ergoemacs-keyboard-layout "programmer-dv")
-  (global-set-key (kbd "M-}") 'split-window-horizontally)
-  (global-set-key (kbd "M-3") 'split-window-vertically)
-  (global-set-key (kbd "M-+") 'tags-loop-continue)
-  (global-set-key (kbd "M-4") 'next-error)
-  (global-set-key (kbd "M-+") 'compilation-next-error)
-  (global-set-key (kbd "M-]") 'xref-find-definitions)
-  (global-set-key (kbd "M-!") 'xref-pop-marker-stack)
-  (global-set-key (kbd "C-S-u") 'swiper))
-
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
-
-(use-package flycheck
-  :ensure t
-  :config (global-flycheck-mode))
 
 ; Enable CMake major mode
 (use-package cmake-mode
@@ -206,128 +71,9 @@
   :init
   (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
 
-; Use cscope
-(use-package xcscope
-	     :ensure t
-	     :pin melpa-stable
-	     :init
-	     ; Configure Emacs to accept Cygwin executables
-	     (setq cscope-do-not-update-database t)
-	     ;(setq exec-path (cons "C:/cygwin/bin" exec-path))
-	     :config
-	     (cscope-setup))
-
-; Use auto-complete
-;; (use-package auto-complete
-;; 	     :ensure t
-;; 	     :pin melpa-stable
-;;              :init
-;;              (setq ac-auto-show-menu    0.1)
-;;              (setq ac-delay             0.5)
-;; 	     :config
-;; 	     (ac-config-default))
-
-;; Auto-complete-mode-hook
-;; When the `auto-complete-mode' is on, and when a word completion
-;; is in process, Ctrl+s does `ac-isearch'.
-;; This fixes it.
-;; (auto-complete-mode-hook
-;;  ((isearch-forward ac-isearch ac-completing-map)
-;;   ("C-s" nil ac-completing-map)))
-
-; Keybinding for using MaGit
-(use-package magit
-	     :ensure t
-	     :pin melpa-stable
-	     :bind ("C-x g" . magit-status))
-
-(use-package projectile
-	     :ensure t
-	     :pin melpa-stable)
-
-(use-package ggtags
-  :ensure t
-  :pin melpa-stable
-  :init
-  (add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1)))))
-
 (use-package org
   :ensure t
   :pin org)
-
-(setq redisplay-dont-pause t
-	  scroll-margin 1
-	  scroll-step 1
-	  scroll-conservatively 10000
-	  scroll-preserve-screen-position 1)
-
-(setq mouse-wheel-follow-mouse 't)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-
-(setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
-
- ; Generate cscope.files from a directory list
-(defun build-cscope-file (directories &optional target-directory)
-  "Generate cscope.file for a list of DIRECTORIES, optionally in TARGET-DIRECTORY."
-  (let
-	  (
-	   (file (if target-directory
-				 (concat target-directory "/cscope.files")
-			   "cscope.files"))
-	   )
-	(shell-command (concat "rm -rf " file))
-	(dolist (dir directories)
-	  (shell-command (concat "find " dir " -name *.cpp >> " file ))
-	  (shell-command (concat "find " dir " -name *.hpp >> " file ))
-	  (shell-command (concat "find " dir " -name *.c >> " file   ))
-	  (shell-command (concat "find " dir " -name *.h >> " file   )))
-	))
-
- ; Functions to create Ctags and Cscope files
-(defun build-ctags (directory)
-  (interactive "D")
-  (let
-      ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
-    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
-    (visit-tags-table (concat directory "/TAGS"))))
-
-(defun build-ctags-from-list (filename &optional target-directory)
-  (interactive "f")
-  (if target-directory
-	  (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename "-f" (concat target-directory "/TAGS"))
-	(call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename)))
-	
-
-(defun build-cscope (directory)
-  (interactive "D")
-  (call-process "sh" nil (get-buffer-create "process-output") t "cscope-indexer" "-r" directory)
-  (cscope-set-initial-directory directory)
-  (message (concat "Cscope file built successfully for " directory)))
-
-(defun build-cscope-from-list (filename &optional target-directory)
-  (interactive "f")
-  (if target-directory
-	  (let ((default-directory target-directory))
-		(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
-	(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
-	(message (concat "Cscope file built successfully for " filename)))
-
-; Allow (a) to be used in dired
-(put 'dired-find-alternate-file 'disabled nil)
-
-; Show line numbers
-(global-linum-mode t)
-
-; Avoid splash screen
-(setq inhibit-splash-screen t)
-
-; Make subwords with camel-case as single words
-(subword-mode t)
-
-;(setq python-shell-native-complete nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
