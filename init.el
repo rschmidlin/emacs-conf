@@ -165,7 +165,7 @@
     (global-set-key (kbd "M-9") 'tags-loop-continue)
     (global-set-key (kbd "M-)") 'next-error)
     (global-set-key (kbd "M-0") 'xref-find-definitions)
-    (global-set-key (kbd "M-ß") 'pop-tag-mark)
+    (global-set-key (kbd "M-ß") 'xref-pop-marker-stack)
     (global-set-key (kbd "C-S-f") 'swiper)
 ;    (define-key compilation-mode-map (kbd "M-9") 'next-error)
     ; Workaround AltGr supression
@@ -185,7 +185,7 @@
   (global-set-key (kbd "M-4") 'next-error)
   (global-set-key (kbd "M-+") 'compilation-next-error)
   (global-set-key (kbd "M-]") 'xref-find-definitions)
-  (global-set-key (kbd "M-!") 'pop-tag-mark)
+  (global-set-key (kbd "M-!") 'xref-pop-marker-stack)
   (global-set-key (kbd "C-S-u") 'swiper))
 
 ;; Configure C-style
@@ -323,6 +323,9 @@
 
 ; Avoid splash screen
 (setq inhibit-splash-screen t)
+
+; Make subwords with camel-case as single words
+(subword-mode t)
 
 ;(setq python-shell-native-complete nil)
 
