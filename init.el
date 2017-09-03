@@ -57,6 +57,9 @@
   :init
   (setq neo-theme 'nerd))
 
+(add-to-list 'load-path "~/.emacs.d/sr-speedbar")
+(require 'sr-speedbar)
+
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
 
