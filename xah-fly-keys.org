@@ -1,0 +1,65 @@
+* Xah-Fly-Keys
+
+** Leader key
+
+| Command            | Key |
+|--------------------+-----|
+| buffer switch      | f   |
+| bottom/top         | n h |
+| recenter           | p   |
+| search/replace     | r   |
+| universal argument | w   |
+| Dired              | m   |
+| Close buffer       | DEL |
+
+** K Group
+
+| Command              | Key |
+|----------------------+-----|
+| query-replace-regexp | r   |
+| go-to-line           | j   |
+| Next frame/window    | ,   |
+| Navigate errors      | a n |
+
+** I Group
+
+| Command           | Key |
+|-------------------+-----|
+| find-file         | e   |
+| IBuffer           | d   |
+| New buffer        | l   |
+| bookmark jump/set | o p |
+
+** L Group
+
+| Command     | Key |
+|-------------+-----|
+| Eshell      | d   |
+| Full screen | e   |
+| Make frame  | g   |
+| Zooming     | a   |
+
+** J Group
+
+| Command           |  Key |
+|-------------------+------|
+| Describe function | j    |
+| Describe key      | v    |
+| Describe variable | l    |
+| Info              | g    |
+| Apropos           | a    |
+
+** , Group
+
+| Command        |  Key |
+|----------------+------|
+| eval-last-sexp | m    |
+| Delete frame   | ,    |
+| Quit           | x    |
+ 
+
+** Missing
+
+| Command     |  Key |
+|-------------+------|
+|             |      |
