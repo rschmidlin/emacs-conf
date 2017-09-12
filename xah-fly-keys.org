@@ -1,6 +1,6 @@
 * Xah-Fly-Keys
 	
-** Leader key
+** Leader key / Generic control
 
 | Command            | Key |
 |--------------------+-----|
@@ -12,7 +12,7 @@
 | Dired              | m   |
 | Close buffer       | DEL |
 
-** K Group
+** K Group / buffer navigation 
 
 | Command              | Key |
 |----------------------+-----|
@@ -21,7 +21,7 @@
 | Next frame/window    | ,   |
 | Navigate errors      | a n |
 
-** I Group
+** I Group / file navigation
 
 | Command           | Key |
 |-------------------+-----|
@@ -30,7 +30,7 @@
 | New buffer        | l   |
 | bookmark jump/set | o p |
 
-** L Group
+** L Group / frame & applications
 
 | Command     | Key |
 |-------------+-----|
@@ -40,7 +40,7 @@
 | Zooming     | a   |
 | Eww         | ,   |
 
-** J Group
+** J Group / Help
 
 | Command           | Key |
 |-------------------+-----|
@@ -50,7 +50,7 @@
 | Info              | g   |
 | Apropos           | a   |
 
-** , Group
+** , Group / Elisp 
 
 | Command        | Key |
 |----------------+-----|
@@ -58,7 +58,7 @@
 | Delete frame   | ,   |
 | Quit           | x   |
  
-** TAB Group
+** TAB Group / Indentation
 
 | Command | Key |
 |---------+-----|
