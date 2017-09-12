@@ -1,5 +1,5 @@
 * Xah-Fly-Keys
-
+	
 ** Leader key
 
 | Command            | Key |
@@ -38,28 +38,34 @@
 | Full screen | e   |
 | Make frame  | g   |
 | Zooming     | a   |
+| Eww         | ,   |
 
 ** J Group
 
-| Command           |  Key |
-|-------------------+------|
-| Describe function | j    |
-| Describe key      | v    |
-| Describe variable | l    |
-| Info              | g    |
-| Apropos           | a    |
+| Command           | Key |
+|-------------------+-----|
+| Describe function | j   |
+| Describe key      | v   |
+| Describe variable | l   |
+| Info              | g   |
+| Apropos           | a   |
 
 ** , Group
 
-| Command        |  Key |
-|----------------+------|
-| eval-last-sexp | m    |
-| Delete frame   | ,    |
-| Quit           | x    |
+| Command        | Key |
+|----------------+-----|
+| eval-last-sexp | m   |
+| Delete frame   | ,   |
+| Quit           | x   |
  
+** TAB Group
+
+| Command | Key |
+|---------+-----|
+| indent  | TAB |
 
 ** Missing
 
-| Command     |  Key |
-|-------------+------|
-|             |      |
+| Command | Key |
+|---------+-----|
+|         |     |
