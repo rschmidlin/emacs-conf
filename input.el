@@ -9,20 +9,20 @@
 ;;  	     :config
 ;;  	     (ergoemacs-mode 1))
 
-;; (use-package god-mode
-;;   :ensure t
-;;   :pin melpa
-;;   :bind ("<escape>" . god-local-mode)
-;;   :init
-;;   (setq god-exempt-major-modes nil)
-;;   (setq god-exempt-predicates nil))
+(use-package god-mode
+  :ensure t
+  :pin melpa
+  :bind ("<escape>" . god-local-mode)
+  :init
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil))
 
 (use-package xah-fly-keys
   :ensure t
   :pin melpa
+  :init
   :config
-  (xah-fly-keys-set-layout "qwerty") ; required if you use qwerty
-										; (xah-fly-set-layout "dvorak") ; by default, it's dvorak
+  (xah-fly-keys-set-layout "qwertz")
   (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
   (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
   (xah-fly-keys 1))
