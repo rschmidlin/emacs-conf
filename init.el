@@ -24,7 +24,7 @@
 (load-file "~/.emacs.d/commands_completion.el")
 
 ; Theme selection
-(load-file "~/.emacs.d/themes.el")
+;(load-file "~/.emacs.d/themes.el")
 
 ; Behavior/window configuration
 (load-file "~/.emacs.d/generic_behavior.el")
@@ -42,7 +42,7 @@
 
 (use-package projectile
 	     :ensure t
-	     :pin melpa-stable)
+	     :pin melpa)
 
 ; Keybinding for using MaGit
 (use-package magit
@@ -85,10 +85,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(flycheck ggtags neotree cmake-font-lock cmake-mode persistent-soft projectile magit auto-complete xcscope counsel))))
+	(xcscope xah-fly-keys which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
+(put 'narrow-to-region 'disabled nil)

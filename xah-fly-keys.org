@@ -1,4 +1,4 @@
-* Xah-Fly-Keys
+* Xah Fly Keys
 	
 ** Leader key / Generic control
 
@@ -10,7 +10,6 @@
 | search/replace     | r   |
 | universal argument | w   |
 | Dired              | m   |
-| Close buffer       | DEL |
 
 ** K Group / buffer navigation 
 
@@ -20,6 +19,7 @@
 | go-to-line           | j   |
 | Next frame/window    | ,   |
 | Navigate errors      | a n |
+| Close buffer         | j   |
 
 ** I Group / file navigation
 
@@ -28,7 +28,7 @@
 | find-file         | e   |
 | IBuffer           | d   |
 | New buffer        | l   |
-| bookmark jump/set | o p |
+| bookmark jump/set | i p |
 
 ** L Group / frame & applications
 
