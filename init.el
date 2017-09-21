@@ -63,6 +63,9 @@
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
 
+;; Subword mode
+(global-subword-mode t)
+
 ; Enable CMake major mode
 (use-package cmake-mode
   :ensure t
@@ -85,7 +88,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(xcscope xah-fly-keys which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
+	(xcscope which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
