@@ -10,13 +10,14 @@
 | search/replace     | r   |
 | universal argument | w   |
 | Dired              | m   |
+| delete-window      | 3   |
 
 ** K Group / buffer navigation 
 
 | Command              | Key |
 |----------------------+-----|
 | query-replace-regexp | r   |
-| go-to-line           | j   |
+| go-to-line           | z   |
 | Next frame/window    | ,   |
 | Navigate errors      | a n |
 | Close buffer         | j   |
@@ -39,6 +40,13 @@
 | Make frame  | g   |
 | Zooming     | a   |
 | Eww         | ,   |
+
+** o Group / Macros 
+
+| Command     | Key |
+|-------------+-----|
+| macro-start | e   |
+| macro-end   | r   |
 
 ** J Group / Help
 

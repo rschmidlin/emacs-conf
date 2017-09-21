@@ -1,3 +1,6 @@
 [submodule "use-package"]
 	path = use-package
 	url = https://github.com/jwiegley/use-package.git
+[submodule "xah-fly-keys"]
+	path = xah-fly-keys
+	url = https://github.com/rschmidlin/xah-fly-keys.git

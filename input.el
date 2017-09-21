@@ -1,13 +1,13 @@
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
 ;; (use-package ergoemacs-mode
-;; 	     :ensure t
-;;  	     :pin melpa
-;;  	     :init
-;;  	     (setq ergoemacs-theme nil)
-;;  	     ;(setq ergoemacs-keyboard-layout "programmer-dv")
-;;  	     (setq ergoemacs-keyboard-layout "de")
-;;  	     :config
-;;  	     (ergoemacs-mode 1))
+;;   :ensure t
+;;   :pin melpa
+;;   :init
+;;   (setq ergoemacs-theme nil)
+;;  ;(setq ergoemacs-keyboard-layout "programmer-dv")
+;;   (setq ergoemacs-keyboard-layout "de")
+;;   :config
+;;   (ergoemacs-mode 1))
 
 ;; (use-package god-mode
 ;;   :ensure t
@@ -17,15 +17,23 @@
 ;;   (setq god-exempt-major-modes nil)
 ;;   (setq god-exempt-predicates nil))
 
-(use-package xah-fly-keys
-  :ensure t
-  :pin melpa
-  :init
-  :config
-  (xah-fly-keys-set-layout "qwertz")
-  (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-  (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
-  (xah-fly-keys 1))
+;; Install use-package for managing packages
+(add-to-list 'load-path "~/.emacs.d/xah-fly-keys")
+(require 'xah-fly-keys)
+(xah-fly-keys-set-layout "qwertz")
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
+(xah-fly-keys 1)
+
+;; (use-package xah-fly-keys
+;;   :ensure t
+;;   :pin melpa
+;;   :init
+;;   :config
+;;   (xah-fly-keys-set-layout "qwertz")
+;;   (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+;;   (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
+;;   (xah-fly-keys 1))
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
