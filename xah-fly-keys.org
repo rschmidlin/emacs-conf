@@ -1,4 +1,7 @@
 * Xah Fly Keys
+
+** Command mode
+   [[./xah_fly_keys_layout_qwerty.svg][Qwerty]]
 	
 ** Leader key / Generic control
 

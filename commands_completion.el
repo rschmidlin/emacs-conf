@@ -5,6 +5,11 @@
 	     :config
 	     (which-key-mode))
 
+; Helping IVY with Flx
+(use-package flx
+  :ensure t
+  :pin melpa)
+
 ; Use IVY
 (use-package counsel
 	     :ensure t
@@ -14,6 +19,10 @@
 	     (setq ivy-count-format "(%d/%d) ")
 	     (setq magit-completing-read-function 'ivy-completing-read)
 	     (setq projectile-completion-system 'ivy)
+		 (setq ivy-re-builders-alist
+			   '((ivy-switch-buffer . ivy--regex-plus)
+				 (t . ivy--regex-fuzzy)))
+		 (setq ivy-initial-inputs-alist nil)
 	     :config
 	     (ivy-mode 1))
 ;(global-set-key (kbd "M-a") 'counsel-M-x)
