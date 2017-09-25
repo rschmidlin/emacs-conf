@@ -40,15 +40,11 @@
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 (load-file "~/.emacs.d/indexers.el")
 
-(use-package projectile
-	     :ensure t
-	     :pin melpa)
+; Configure project context 
+(load-file "~/.emacs.d/projects.el")
 
-; Keybinding for using MaGit
-(use-package magit
-	     :ensure t
-	     :pin melpa-stable
-	     :bind ("C-x g" . magit-status))
+; Configure programming languages
+(load-file "~/.emacs.d/lang.el")
 
 (use-package neotree
   :ensure t
@@ -59,27 +55,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/sr-speedbar")
 (require 'sr-speedbar)
-
-;; Configure C-style
-(load-file "~/.emacs.d/cstyle.el")
-
-;; Subword mode
-(global-subword-mode t)
-
-; Enable CMake major mode
-(use-package cmake-mode
-  :ensure t
-  :pin melpa-stable)
-
-(use-package cmake-font-lock
-  :ensure t
-  :pin melpa
-  :init
-  (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
-
-(use-package org
-  :ensure t
-  :pin org)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

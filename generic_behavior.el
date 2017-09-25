@@ -23,5 +23,7 @@
 (setq inhibit-splash-screen t)
 
 ; Make subwords with camel-case as single words
-(subword-mode t)
+(global-subword-mode t)
+
+
 
