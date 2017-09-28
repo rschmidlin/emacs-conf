@@ -73,10 +73,6 @@ pdfkeywords={Emacs Xah-Fly-Keys, Cheatsheet}
 \put(10,180){ % Divide the page
 \begin{minipage}[t]{85mm} % Create a box to house text
 
-%----------------------------------------------------------------------------------------
-%	HEADING ONE
-%----------------------------------------------------------------------------------------
-
 \sectiontitle{Leader key - Generic Control}
 			
 \command{SPC f}{buffer switch}
@@ -97,6 +93,7 @@ pdfkeywords={Emacs Xah-Fly-Keys, Cheatsheet}
 \sectiontitle{K Group - Buffer Navigation}
 			
 \command{SPC k z}{go-to-line}
+\command{SPC k i}{go-to-char}
 \command{SPC k ,}{Next frame/window}
 \command{SPC k a/n}{Next/previous error}
 \command{SPC k j}{Close buffer}
@@ -122,14 +119,30 @@ pdfkeywords={Emacs Xah-Fly-Keys, Cheatsheet}
 \put(105,180){ % Divide the page
 \begin{minipage}[t]{85mm} % Create a box to house text
 
-%----------------------------------------------------------------------------------------
-%	HEADING FOUR
-%----------------------------------------------------------------------------------------
+\sectiontitle{J Group - Help}
+
+\command{SPC j j}{describe function}
+\command{SPC j v}{describe key}
+\command{SPC j l}{describe variable}
+\command{SPC j g}{Info}
+\command{SPC j a}{Apropos}
+
+\sectiontitle{, Group - Elisp}
+
+\command{SPC , m}{eval-last-sexp}
+\command{SPC , ,}{delete-frame}
+\command{SPC , x}{quit}
 
 \sectiontitle{O Group - Macros}
 
 \command{SPC o e}{Macro-start}
 \command{SPC o r}{Macro-end}
+\command{SPC o SPC}{rectangle-mark}
+
+\sectiontitle{Missing}
+
+\command{}{Magit}
+\command{}{Projectile find file}
 					
 %----------------------------------------------------------------------------------------
 
