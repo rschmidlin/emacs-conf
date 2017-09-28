@@ -12,6 +12,6 @@
   :init
   (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
 
-(use-package org
+(use-package org-plus-contrib
   :ensure t
   :pin org)
