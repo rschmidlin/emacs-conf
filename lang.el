@@ -1,6 +1,12 @@
 ;; Configure C-style
 (load-file "~/.emacs.d/cstyle.el")
 
+(use-package elpy
+  :ensure t
+  :pin elpy
+  :config
+  (elpy-enable))
+
 ; Enable CMake major mode
 (use-package cmake-mode
   :ensure t
@@ -14,4 +20,6 @@
 
 (use-package org-plus-contrib
   :ensure t
-  :pin org)
+  :pin org
+  :init
+  (setq org-default-notes-file "~/.emacs.d/notes.org"))

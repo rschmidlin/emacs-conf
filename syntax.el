@@ -10,3 +10,17 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 
+(use-package smartparens
+  :ensure t
+  :pin melpa
+  :config
+  (smartparens-global-mode))
+
+(use-package yasnippet
+  :ensure t
+  :pin melpa
+  :init
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  :config
+  (yas-reload-all))
+
