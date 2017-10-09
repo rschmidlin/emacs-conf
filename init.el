@@ -56,15 +56,17 @@
 
 (add-to-list 'load-path "~/.emacs.d/sr-speedbar")
 (require 'sr-speedbar)
+(global-set-key (kbd "M-2") 'sr-speedbar-toggle)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/.emacs.d/xah-fly-keys.org")))
  '(package-selected-packages
    (quote
-	(smartparens xcscope which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
+	(dash-at-point smartparens xcscope which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
 (put 'narrow-to-region 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
