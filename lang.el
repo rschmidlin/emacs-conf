@@ -23,6 +23,6 @@
   :pin org
   :init
   (setq org-default-notes-file "~/.emacs.d/notes.org")
-  (setq org-agenda-files (cons org-default-notes-file org-agenda-files))
+  (setq org-agenda-files org-default-notes-file)
   (setq org-agenda-files (cons "~/.emacs.d/xah-fly-keys.org" org-agenda-files))
   (setq org-refile-targets org-agenda-files))
