@@ -21,6 +21,7 @@
 	     (setq projectile-completion-system 'ivy)
 		 (setq ivy-re-builders-alist
 			   '((ivy-switch-buffer . ivy--regex-plus)
+				 (swiper . ivy--regex-plus)
 				 (t . ivy--regex-fuzzy)))
 		 (setq ivy-initial-inputs-alist nil)
 	     :config
