@@ -1,7 +1,7 @@
 ; Use cscope
 (use-package xcscope
 	     :ensure t
-	     :pin melpa-stable
+	     :pin melpa
 	     :init
 	     ; Configure Emacs to accept Cygwin executables
 	     (setq cscope-do-not-update-database t)
@@ -12,7 +12,7 @@
 ; Install ggtags for GNU Global (ctags/cscope substitution)
 (use-package ggtags
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :init
   (add-hook 'c-mode-common-hook
           (lambda ()
@@ -37,25 +37,11 @@
 	))
 
  ; Functions to create Ctags and Cscope files
-(defun build-ctags (directory)
-  (interactive "D")
-  (let
-      ((dos-dir (replace-regexp-in-string "/" "\\\\" (directory-file-name directory))))
-    (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "--exclude=.git" "--exclude=build" "--exclude=GeneratedSources" "--exclude=CoSeMa" "--exclude=CppUnit" "--exclude=Import" "-R" "-f" (concat dos-dir "\\TAGS") dos-dir)
-    (visit-tags-table (concat directory "/TAGS"))))
-
 (defun build-ctags-from-list (filename &optional target-directory)
   (interactive "f")
   (if target-directory
 	  (call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename "-f" (concat target-directory "/TAGS"))
 	(call-process path-to-ctags nil (get-buffer-create "process-output") t "-e" "--extra=+fq" "-L" filename)))
-	
-
-(defun build-cscope (directory)
-  (interactive "D")
-  (call-process "sh" nil (get-buffer-create "process-output") t "cscope-indexer" "-r" directory)
-  (cscope-set-initial-directory directory)
-  (message (concat "Cscope file built successfully for " directory)))
 
 (defun build-cscope-from-list (filename &optional target-directory)
   (interactive "f")
@@ -63,5 +49,13 @@
 	  (let ((default-directory target-directory))
 		(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
 	(call-process "cscope" nil (get-buffer-create "process-output") t "-U" "-b" "-i" filename))
+	(message (concat "Cscope file built successfully for " filename)))
+
+(defun build-gtags-from-list (filename &optional target-directory)
+  (interactive "f")
+  (if target-directory
+	  (let ((default-directory target-directory))
+		(call-process "gtags" nil (get-buffer-create "process-output") t "-f" filename))
+	(call-process "gtags" nil (get-buffer-create "process-output") t "-f" filename))
 	(message (concat "Cscope file built successfully for " filename)))
 
