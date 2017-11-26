@@ -1,7 +1,7 @@
 ; Use which-key
 (use-package which-key
 	     :ensure t
-	     :pin melpa-stable
+	     :pin melpa
 	     :config
 	     (which-key-mode))
 
@@ -13,7 +13,7 @@
 ; Use IVY
 (use-package counsel
 	     :ensure t
-	     :pin melpa-stable
+	     :pin melpa
 	     :init
 	     (setq ivy-use-virtual-buffers t)
 	     (setq ivy-count-format "(%d/%d) ")

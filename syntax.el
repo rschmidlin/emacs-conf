@@ -6,7 +6,7 @@
 ; Enable text completion
 (use-package company
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 

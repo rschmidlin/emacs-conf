@@ -1,7 +1,7 @@
 
 (use-package monokai-theme
 	     :ensure t
-	     :pin melpa-stable
+	     :pin melpa
 	     :init
 	     (add-hook 'after-init-hook '(lambda () (load-theme 'monokai t)))	     
 	     ;; FIX: Invalid font in org-mode on Windows

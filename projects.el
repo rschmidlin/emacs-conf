@@ -2,7 +2,7 @@
 ; Keybinding for using MaGit
 (use-package magit
 	     :ensure t
-	     :pin melpa-stable
+	     :pin melpa
 	     :bind ("C-x g" . magit-status))
 
 ; Projectile to access project files

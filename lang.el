@@ -10,7 +10,7 @@
 ; Enable CMake major mode
 (use-package cmake-mode
   :ensure t
-  :pin melpa-stable)
+  :pin melpa)
 
 (use-package cmake-font-lock
   :ensure t
