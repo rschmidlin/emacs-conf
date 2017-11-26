@@ -1,22 +1,22 @@
 ;; Configure C-style
-(use-package rtags
-  :ensure t
-  :pin melpa
-  :init
-  (use-package ivy-rtags
-	:ensure t
-	:pin melpa)
-  (setq rtags-display-result-backend 'ivy))
+;; (use-package rtags
+;;   :ensure t
+;;   :pin melpa
+;;   :init
+;;   (use-package ivy-rtags
+;; 	:ensure t
+;; 	:pin melpa)
+;;   (setq rtags-display-result-backend 'ivy))
 
-(use-package irony
-  :ensure t
-  :pin melpa)
+;; (use-package irony
+;;   :ensure t
+;;   :pin melpa)
 
-(use-package cmake-ide
-  :ensure t
-  :pin melpa
-  :config
-  (cmake-ide-setup))
+;; (use-package cmake-ide
+;;   :ensure t
+;;   :pin melpa
+;;   :config
+;;   (cmake-ide-setup))
 
 (load-file "~/.emacs.d/cstyle.el")
 
