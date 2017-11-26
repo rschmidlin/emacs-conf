@@ -29,12 +29,15 @@
 			   "cscope.files"))
 	   )
 	(shell-command (concat "rm -rf " file))
-	(dolist (dir directories)
-	  (shell-command (concat "find " dir " -name *.cpp >> " file ))
-	  (shell-command (concat "find " dir " -name *.hpp >> " file ))
-	  (shell-command (concat "find " dir " -name *.c >> " file   ))
-	  (shell-command (concat "find " dir " -name *.h >> " file   )))
-	))
+	(let ((command ""))
+	  (dolist (dir directories)
+		(setq command (concat command "find " dir " -name *.cpp >> " file " && "))
+		(setq command (concat command "find " dir " -name *.hpp >> " file " && "))
+		(setq command (concat command "find " dir " -name *.c >> " file " && "))
+		(setq command (concat command "find " dir " -name *.h >> " file " && ")))
+	  (setq command (substring command 0 -4))
+	  (shell-command command)))
+  (message "cscope file generated"))
 
  ; Functions to create Ctags and Cscope files
 (defun build-ctags-from-list (filename &optional target-directory)
@@ -57,5 +60,5 @@
 	  (let ((default-directory target-directory))
 		(call-process "gtags" nil (get-buffer-create "process-output") t "-f" filename))
 	(call-process "gtags" nil (get-buffer-create "process-output") t "-f" filename))
-	(message (concat "Cscope file built successfully for " filename)))
+	(message (concat "GNU Global tags built successfully for " filename)))
 

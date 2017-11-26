@@ -47,9 +47,12 @@
 ; Configure programming languages
 (load-file "~/.emacs.d/lang.el")
 
+; Enable semantics in Emacs
+(load-file "~/.emacs.d/semantics.el")
+
 (use-package neotree
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :bind ("M-1" . neotree-toggle)
   :init
   (setq neo-theme 'nerd))
@@ -63,10 +66,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/.emacs.d/xah-fly-keys.org")))
+ '(org-agenda-files (quote ("~/.emacs.d/xah-fly-keys.org")) t)
  '(package-selected-packages
    (quote
-	(dash-at-point smartparens xcscope which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete))))
+	(dash-at-point smartparens xcscope which-key projectile persistent-soft neotree monokai-theme magit god-mode ggtags flycheck ergoemacs-status ergoemacs-mode counsel company cmake-font-lock auto-complete)))
+ '(safe-local-variable-values
+   (quote
+	((company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB//share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform")
+	 (company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/includes" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/Common/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/Platforms/VxWorks" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_AddOn_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel")
+	 (company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/..//m262_fw/Workspace/ZC702_VSB/share/h" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/..//m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/..//m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/..//m262_fw/Workspace/ZC702_VSB/../../Sources/ULoader/includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/..//m262_fw/Workspace/ZC702_VSB/../../Sources/Common/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/Platforms/VxWorks" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_AddOn_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel")))))
 (put 'narrow-to-region 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
