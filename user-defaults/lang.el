@@ -18,7 +18,7 @@
 ;;   :config
 ;;   (cmake-ide-setup))
 
-(load-file "~/.emacs.d/cstyle.el")
+(load "cstyle")
 
 (use-package elpy
   :ensure t
