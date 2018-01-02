@@ -10,11 +10,17 @@
   :ensure t
   :pin melpa)
 
+; Include smex to sort recent commands first in counsel
+(use-package smex
+  :ensure t
+  :pin melpa)
+
 ; Use IVY
 (use-package counsel
 	     :ensure t
 	     :pin melpa
 	     :init
+		 (require 'smex)
 	     (setq ivy-use-virtual-buffers t)
 	     (setq ivy-count-format "(%d/%d) ")
 	     (setq magit-completing-read-function 'ivy-completing-read)

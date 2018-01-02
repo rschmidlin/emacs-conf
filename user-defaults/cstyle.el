@@ -13,3 +13,6 @@
 
 ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+(setq
+ ;; use gdb-many-windows by default
+ gdb-many-windows t)

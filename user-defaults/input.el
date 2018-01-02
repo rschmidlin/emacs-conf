@@ -17,7 +17,12 @@
 ;;   (setq god-exempt-major-modes nil)
 ;;   (setq god-exempt-predicates nil))
 
-;; Install use-package for managing packages
+; Help switching windows
+(use-package ace-window
+  :ensure t
+  :pin melpa)
+
+; Install use-package for managing packages
 (add-to-list 'load-path "~/.emacs.d/xah-fly-keys")
 (require 'xah-fly-keys)
 (xah-fly-keys-set-layout "qwertz")

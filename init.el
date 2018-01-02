@@ -18,37 +18,40 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
+; Add user-defaults to load-path
+(add-to-list 'load-path "~/.emacs.d/user-defaults")
+
 ; Configure Emacs according to operating system
-(load-file "~/.emacs.d/operating_system.el")
+(load "operating_system")
 
 ; Enable command completion system for Emacs
-(load-file "~/.emacs.d/commands_completion.el")
+(load "commands_completion")
 
 ; Theme selection
-;(load-file "~/.emacs.d/themes.el")
+(load "themes")
 
 ; Behavior/window configuration
-(load-file "~/.emacs.d/generic_behavior.el")
+(load "generic_behavior")
 
 ; Select input-interface system 
 (setq ergoemacs-keyboard-layout "de")
-(load-file "~/.emacs.d/input.el")
+(load "input")
 
 ; Enable IDE features, static analysis / code completion
-(load-file "~/.emacs.d/syntax.el")
+(load "syntax")
 
 ; Configure indexers - ctags/cscope/ggtags
 (setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
-(load-file "~/.emacs.d/indexers.el")
+(load "indexers")
 
 ; Configure project context 
-(load-file "~/.emacs.d/projects.el")
+(load "projects")
 
 ; Configure programming languages
-(load-file "~/.emacs.d/lang.el")
+(load "lang")
 
 ; Enable semantics in Emacs
-(load-file "~/.emacs.d/semantics.el")
+(load "semantics")
 
 (use-package neotree
   :ensure t
@@ -66,6 +69,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (spacemacs-dark)))
+ '(custom-safe-themes
+   (quote
+	("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(org-agenda-files (quote ("~/.emacs.d/xah-fly-keys.org")) t)
  '(package-selected-packages
    (quote
