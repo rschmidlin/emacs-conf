@@ -22,30 +22,7 @@
 
 (add-hook 'prog-mode-hook
           (lambda ()
-			(xah-fly--define-keys
-			 ;; kinda replacement related
-			 (define-prefix-command 'xah-fly-comma-keymap)
-			 '(
-			   ("'" . with-editor-finish)
-			   ("," . org-capture)
-			   ("c" . cscope-find-functions-calling-this-function)
-			   ("e" . projectile-find-dir)
-			   ("f" . xah-fly-cancel-edit)
-			   ("g" . senator-go-to-up-reference)
-			   ("j" . org-ctrl-c-ctrl-c)
-			   ("k" . org-ctrl-c-minus)
-			   ("l" . cscope-find-this-symbol)
-			   ("m" . org-refile)
-			   ("n" . xref-pop-marker-stack)
-			   ("p" . gdb)
-			   ("q" . pdflatex)
-			   ("r" . cscope-find-called-functions)
-			   ("s" . xref-find-references)
-			   ("t" . xref-find-definitions)
-			   ("u" . ggtags-find-file)
-			   ("x" . compile)
-			   ("y" . pdb)
-			   ("i" . magit-status)))))
+			(define-key xah-fly-command-map (kbd "SPC w k") 'xref-find-definitions)))
 
 (use-package elpy
   :ensure t
@@ -54,30 +31,7 @@
   (elpy-enable)
   (add-hook 'python-mode-hook
 			(lambda ()
-			  (xah-fly--define-keys
-			   ;; kinda (region-end)placement related
-			   (define-prefix-command 'xah-fly-comma-keymap)
-			   '(
-				 ("'" . with-editor-finish)
-				 ("," . org-capture)
-				 ("c" . cscope-find-functions-calling-this-function)
-				 ("e" . projectile-find-dir)
-				 ("f" . xah-fly-cancel-edit)
-				 ("g" . senator-go-to-up-reference)
-				 ("j" . org-ctrl-c-ctrl-c)
-				 ("k" . org-ctrl-c-minus)
-				 ("l" . cscope-find-this-symbol)
-				 ("m" . org-refile)
-				 ("n" . xref-pop-marker-stack)
-				 ("p" . gdb)
-				 ("q" . pdflatex)
-				 ("r" . cscope-find-called-functions)
-				 ("s" . elpy-goto-definition)
-				 ("t" . xref-find-definitions)
-				 ("u" . ggtags-find-file)
-				 ("x" . compile)
-				 ("y" . pdb)
-				 ("i" . magit-status))))))
+			  (define-key xah-fly-command-map (kbd "SPC w k") 'elpy-goto-definition))))
 
 ; Enable CMake major mode
 (use-package cmake-mode
