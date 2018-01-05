@@ -43,19 +43,36 @@
 (require 'boon-powerline)
 (boon-powerline-theme) ;; if you want use powerline with Boon
 (boon-mode)
+
+; Use M-SPC to go back to command mode
+(global-set-key (kbd "M-SPC") 'boon-set-command-state)
+
+; Special help keys like pressing escape for C-g, TAB for searching further
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
+
+; Also define commands for C-x that are available from x in Boon
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key  (kbd "M-x") 'counsel-M-x)
 (define-key boon-command-map (kbd "x x") 'counsel-M-x)
+(global-set-key (kbd "C-x x") 'counsel-M-x)
 
-;; (use-package xah-fly-keys
-;;   :ensure t
-;;   :pin melpa
-;;   :init
-;;   :config
-;;   (xah-fly-keys-set-layout "qwertz")
-;;   (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-;;   (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
-;;   (xah-fly-keys 1))
+; Define new commands for command mode
+(define-key boon-command-map (kbd ",") 'ace-window)
+(define-key boon-command-map (kbd "r") 'swiper)
+(define-key boon-command-map (kbd "m") 'split-window-below)
+(define-key boon-command-map (kbd "M") 'split-window-right)
+(define-key boon-command-map (kbd ".") 'delete-other-windows)
+(define-key boon-command-map (kbd ":") 'delete-window)
+(define-key boon-command-map (kbd "T") 'query-replace)
+
+; New keys on C-x group avoiding necessity of pressint control
+(global-set-key (kbd "C-x t") 'query-replace-regexp)
+(global-set-key (kbd "C-x ö") 'save-buffer)
+(global-set-key (kbd "C-x j") 'find-file)
+(global-set-key (kbd "C-x p") 'recenter-top-bottom)
+(global-set-key (kbd "C-x c") 'eval-last-sexp)
+(global-set-key (kbd "C-x y") 'comment-dwim)
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
