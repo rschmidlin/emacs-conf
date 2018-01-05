@@ -20,18 +20,19 @@
 
 (load "cstyle")
 
-(add-hook 'prog-mode-hook
-          (lambda ()
-			(define-key xah-fly-command-map (kbd "SPC w k") 'xref-find-definitions)))
+;; (add-hook 'prog-mode-hook
+;;           (lambda ()
+;; 			(define-key xah-fly-command-map (kbd "SPC w k") 'xref-find-definitions)))
 
 (use-package elpy
   :ensure t
   :pin elpy
   :config
   (elpy-enable)
-  (add-hook 'python-mode-hook
-			(lambda ()
-			  (define-key xah-fly-command-map (kbd "SPC w k") 'elpy-goto-definition))))
+  ;; (add-hook 'python-mode-hook
+  ;; 			(lambda ()
+  ;; 			  (define-key xah-fly-command-map (kbd "SPC w k") 'elpy-goto-definition)))
+  )
 
 ; Enable CMake major mode
 (use-package cmake-mode

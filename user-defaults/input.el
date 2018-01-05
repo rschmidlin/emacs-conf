@@ -23,12 +23,29 @@
   :pin melpa)
 
 ; Install use-package for managing packages
-(add-to-list 'load-path "~/.emacs.d/xah-fly-keys")
-(require 'xah-fly-keys)
-(xah-fly-keys-set-layout "qwertz")
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-(define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
-(xah-fly-keys 1)
+;; (add-to-list 'load-path "~/.emacs.d/xah-fly-keys")
+;; (require 'xah-fly-keys)
+;; (xah-fly-keys-set-layout "qwertz")
+;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+;; (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
+;; (xah-fly-keys 1)
+
+(use-package multiple-cursors
+  :ensure t
+  :pin melpa)
+  
+(use-package expand-region
+  :ensure t
+  :pin melpa)
+
+(add-to-list 'load-path "~/.emacs.d/boon")
+(require 'boon-qwertz) ;; for qwerty port
+(require 'boon-powerline)
+(boon-powerline-theme) ;; if you want use powerline with Boon
+(boon-mode)
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key  (kbd "M-x") 'counsel-M-x)
+(define-key boon-command-map (kbd "x x") 'counsel-M-x)
 
 ;; (use-package xah-fly-keys
 ;;   :ensure t
