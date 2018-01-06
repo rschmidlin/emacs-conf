@@ -48,7 +48,7 @@
 (global-set-key (kbd "M-SPC") 'boon-set-command-state)
 
 ; Special help keys like pressing escape for C-g, TAB for searching further
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
 
 ; Also define commands for C-x that are available from x in Boon
@@ -65,14 +65,22 @@
 (define-key boon-command-map (kbd ".") 'delete-other-windows)
 (define-key boon-command-map (kbd ":") 'delete-window)
 (define-key boon-command-map (kbd "T") 'query-replace)
+(define-key boon-goto-map (kbd "i") 'imenu)
 
-; New keys on C-x group avoiding necessity of pressint control
+; New keys on C-x group avoiding necessity of pressing control
 (global-set-key (kbd "C-x t") 'query-replace-regexp)
 (global-set-key (kbd "C-x ö") 'save-buffer)
 (global-set-key (kbd "C-x j") 'find-file)
 (global-set-key (kbd "C-x p") 'recenter-top-bottom)
 (global-set-key (kbd "C-x c") 'eval-last-sexp)
 (global-set-key (kbd "C-x y") 'comment-dwim)
+(global-set-key (kbd "C-x w") 'find-alternate-file)
+
+; New keys on C-c group avoiding the necessity of pressing control
+(defvar boon-help-map)
+(define-prefix-command 'boon-help-map)
+(set-keymap-parent boon-help-map help-map)
+(define-key boon-command-map (kbd "J") boon-help-map)
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
