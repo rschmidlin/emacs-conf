@@ -4,3 +4,6 @@
 [submodule "xah-fly-keys"]
 	path = xah-fly-keys
 	url = https://github.com/rschmidlin/xah-fly-keys.git
+[submodule "boon"]
+	path = boon
+	url = https://github.com/rschmidlin/boon.git
