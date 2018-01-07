@@ -22,7 +22,7 @@
   :ensure t
   :pin melpa)
 
-; Install use-package for managing packages
+;; Install use-package for managing packages
 ;; (add-to-list 'load-path "~/.emacs.d/xah-fly-keys")
 ;; (require 'xah-fly-keys)
 ;; (xah-fly-keys-set-layout "qwertz")
@@ -81,6 +81,12 @@
 (define-prefix-command 'boon-help-map)
 (set-keymap-parent boon-help-map help-map)
 (define-key boon-command-map (kbd "J") boon-help-map)
+
+; Include extended indexer navigation for Boon
+(global-set-key (kbd "C-c f") 'ggtags-find-file)
+(global-set-key (kbd "C-c i") 'cscope-find-functions-calling-this-function)
+(global-set-key (kbd "C-c o") 'cscope-find-called-functions)
+(global-set-key (kbd "C-c p") 'cscope-find-this-symbol)
 
 ; Specializations for Ergoemacs mode
 (defun insert-commercial-at()
