@@ -159,8 +159,8 @@
   (define-key boon-command-map (kbd "J") boon-help-map)
 
 										; Include extended indexer navigation for Boon
-  (global-set-key (kbd "C-c f") 'ggtags-find-file)
-  (global-set-key (kbd "C-c i") 'cscope-find-functions-calling-this-function)
-  (global-set-key (kbd "C-c o") 'cscope-find-called-functions)
-  (global-set-key (kbd "C-c p") 'cscope-find-this-symbol))
+  (global-set-key (kbd "C-c C-f") 'ggtags-find-file)
+  (global-set-key (kbd "C-c C-i") 'cscope-find-functions-calling-this-function)
+  (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
+  (global-set-key (kbd "C-c C-p") 'cscope-find-this-symbol))
 
