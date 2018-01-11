@@ -122,12 +122,16 @@
 
   ;; Define special modes where boon should be used instead
   (defvar boon-non-special-list
-  	'(dired-mode))
+  	'(dired-mode
+	  bookmark-bmenu-mode))
+  (defvar boon-new-special-list
+	'())
   
   (defun use-special-mode-p (old-function &rest arguments)
     "Function to substitute boon-special-mode-p and disallow use of special mode for some major-modes"
-  	(and (apply old-function arguments)
-		 (not (memq major-mode boon-non-special-list))))
+  	(or (memq major-mode boon-new-special-list)
+		(and (apply old-function arguments)
+			 (not (memq major-mode boon-non-special-list)))))
   
   (advice-add #'boon-special-mode-p :around #'use-special-mode-p)
 
