@@ -156,7 +156,7 @@
   (define-key boon-command-map (kbd ".") 'delete-other-windows)
   (define-key boon-command-map (kbd ":") 'delete-window)
   (define-key boon-command-map (kbd "T") 'query-replace)
-  (define-key boon-goto-map (kbd "i") 'imenu)
+  (define-key boon-goto-map (kbd "i") 'counsel-imenu)
 
   ; New keys on C-x group avoiding necessity of pressing control
   (global-set-key (kbd "C-x t") 'query-replace-regexp)
