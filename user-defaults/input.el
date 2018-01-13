@@ -167,6 +167,24 @@
   (global-set-key (kbd "C-x y") 'comment-dwim)
   (global-set-key (kbd "C-x w") 'find-alternate-file)
 
+  ; Buffer and window control
+  (defun xah-new-empty-buffer ()
+	"Create a new empty buffer.
+New buffer will be named “untitled” or “untitled<2>”,
+“untitled<3>”, etc.
+
+URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+Version 2016-12-27"
+	(interactive)
+	(let (($buf (generate-new-buffer "untitled")))
+	  (switch-to-buffer $buf)
+	  (funcall initial-major-mode)
+	  (setq buffer-offer-save t)))
+
+  (global-set-key (kbd "C-c C-l") 'make-frame)
+  (global-set-key (kbd "C-c C-k") 'delete-frame)
+  (global-set-key (kbd "C-x l") 'xah-new-empty-buffer)
+
   ; New keys on C-c group avoiding the necessity of pressing control
   (defvar boon-help-map)
   (define-prefix-command 'boon-help-map)
@@ -174,6 +192,8 @@
   (define-key boon-command-map (kbd "J") boon-help-map)
 
   ; Include extended indexer navigation for Boon
+  (global-set-key (kbd "C-c C-z") 'xref-peek-definitions)
+
   (global-set-key (kbd "C-c C-f") 'ggtags-find-file)
   (global-set-key (kbd "C-c C-i") 'cscope-find-functions-calling-this-function)
   (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
