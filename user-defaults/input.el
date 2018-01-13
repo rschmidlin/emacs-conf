@@ -1,46 +1,57 @@
-;; Select (insert )nput mode - ergoemacs, xah-fly-keys, boon
+;; Select input mode - ergoemacs, xah-fly-keys, boon
 (defvar input-mode "boon")
+(defvar input-keyboard-layout "de")
 
 ; Specializations for system-wide rebind of AltGr to Alt_L
-(defun insert-commercial-at()
-  "Insert a commercial at before point."
-  (interactive)
-  (insert "@"))
+(when (string= input-keyboard-layout "de")
+  (defun insert-commercial-at()
+	"Insert a commercial at before point."
+	(interactive)
+	(insert "@"))
 
-(defun insert-tilde()
-  "Insert a tilde before point."
-  (interactive)
-  (insert "~"))
+  (defun insert-tilde()
+	"Insert a tilde before point."
+	(interactive)
+	(insert "~"))
 
-(defun insert-left-curly-brace()
-  "Insert a left curly brace before point."
-  (interactive)
-  (insert "{"))
+  (defun insert-left-curly-brace()
+	"Insert a left curly brace before point."
+	(interactive)
+	(insert "{"))
 
-(defun insert-right-curly-brace()
-  "Insert a right curly brace before point."
-  (interactive)
-  (insert "}"))
+  (defun insert-right-curly-brace()
+	"Insert a right curly brace before point."
+	(interactive)
+	(insert "}"))
 
-(defun insert-left-squared-bracket()
-  "Insert a left square bracket before point."
-  (interactive)
-  (insert "["))
+  (defun insert-left-squared-bracket()
+	"Insert a left square bracket before point."
+	(interactive)
+	(insert "["))
 
-(defun insert-right-squared-bracket()
-  "Insert a right square bracket before point."
-  (interactive)
-  (insert "]"))
+  (defun insert-right-squared-bracket()
+	"Insert a right square bracket before point."
+	(interactive)
+	(insert "]"))
 
-(defun insert-backslash()
-  "Insert a backslash before point."
-  (interactive)
-  (insert "\\"))
+  (defun insert-backslash()
+	"Insert a backslash before point."
+	(interactive)
+	(insert "\\"))
 
-(defun insert-pipe()
-  "Insert a pipe before point."
-  (interactive)
-  (insert "|"))
+  (defun insert-pipe()
+	"Insert a pipe before point."
+	(interactive)
+	(insert "|"))
+
+  (global-set-key (kbd "C-M-q") 'insert-commercial-at)
+  (global-set-key (kbd "C-M-+") 'insert-tilde)
+  (global-set-key (kbd "C-M-7") 'insert-left-curly-brace)
+  (global-set-key (kbd "C-M-8") 'insert-left-squared-bracket)
+  (global-set-key (kbd "C-M-9") 'insert-right-squared-bracket)
+  (global-set-key (kbd "C-M-0") 'insert-right-curly-brace)
+  (global-set-key (kbd "C-M-ß") 'insert-backslash)
+  (global-set-key (kbd "C-M-<") 'insert-pipe))
 
 ; Help switching windows
 (use-package ace-window
@@ -54,8 +65,6 @@
 	:pin melpa
 	:init
 	(setq ergoemacs-theme nil)
-										;(setq ergoemacs-keyboard-layout "programmer-dv")
-	(setq ergoemacs-keyboard-layout "de")
 	:config
 	(ergoemacs-mode 1))
 
@@ -67,7 +76,7 @@
 	(setq god-exempt-major-modes nil)
 	(setq god-exempt-predicates nil))
 
-  (when (string= ergoemacs-keyboard-layout "de")
+  (when (string= input-keyboard-layout "de")
     (global-set-key (kbd "M-4") 'split-window-horizontally)
     (global-set-key (kbd "M-$") 'split-window-vertically)
     (global-set-key (kbd "M-9") 'tags-loop-continue)
@@ -75,18 +84,9 @@
     (global-set-key (kbd "M-0") 'xref-find-definitions)
     (global-set-key (kbd "M-ß") 'xref-pop-marker-stack)
     (global-set-key (kbd "C-S-f") 'swiper)
-										;    (define-key compilation-mode-map (kbd "M-9") 'next-error)
-										; Workaround AltGr supression
-    (global-set-key (kbd "C-M-q") 'insert-commercial-at)
-    (global-set-key (kbd "C-M-+") 'insert-tilde)
-    (global-set-key (kbd "C-M-7") 'insert-left-curly-brace)
-    (global-set-key (kbd "C-M-8") 'insert-left-squared-bracket)
-    (global-set-key (kbd "C-M-9") 'insert-right-squared-bracket)
-    (global-set-key (kbd "C-M-0") 'insert-right-curly-brace)
-    (global-set-key (kbd "C-M-ß") 'insert-backslash)
-    (global-set-key (kbd "C-M-<") 'insert-pipe))
+    ;    (define-key compilation-mode-map (kbd "M-9") 'next-error)
 
-  (when (string= ergoemacs-keyboard-layout "programmer-dv")
+  (when (string= input-keyboard-layout "programmer-dv")
 	(global-set-key (kbd "M-}") 'split-window-horizontally)
 	(global-set-key (kbd "M-3") 'split-window-vertically)
 	(global-set-key (kbd "M-+") 'tags-loop-continue)
@@ -170,11 +170,11 @@
   ; Buffer and window control
   (defun xah-new-empty-buffer ()
 	"Create a new empty buffer.
-New buffer will be named “untitled” or “untitled<2>”,
-“untitled<3>”, etc.
+     New buffer will be named “untitled” or “untitled<2>”,
+     “untitled<3>”, etc.
 
-URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
-Version 2016-12-27"
+     URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+     Version 2016-12-27"
 	(interactive)
 	(let (($buf (generate-new-buffer "untitled")))
 	  (switch-to-buffer $buf)
@@ -197,5 +197,13 @@ Version 2016-12-27"
   (global-set-key (kbd "C-c C-f") 'ggtags-find-file)
   (global-set-key (kbd "C-c C-i") 'cscope-find-functions-calling-this-function)
   (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
-  (global-set-key (kbd "C-c C-p") 'cscope-find-this-symbol))
+  (global-set-key (kbd "C-c C-p") 'cscope-find-this-symbol)
+
+  ; Load current file
+  (defun load-current-file ()
+  "Execute file corresponding to current buffer"
+  (interactive)
+  (load-file (buffer-file-name)))
+
+  (global-set-key (kbd "C-c C-c") 'load-current-file))
 
