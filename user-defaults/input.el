@@ -94,7 +94,7 @@
 	(global-set-key (kbd "M-+") 'compilation-next-error)
 	(global-set-key (kbd "M-]") 'xref-find-definitions)
 	(global-set-key (kbd "M-!") 'xref-pop-marker-stack)
-	(global-set-key (kbd "C-S-u") 'swiper)))
+	(global-set-key (kbd "C-S-u") 'swiper))))
 
 ;; Install use-package for managing packages
 (when (string= input-mode "xah-fly-keys")
@@ -201,9 +201,9 @@
 
   ; Load current file
   (defun load-current-file ()
-  "Execute file corresponding to current buffer"
-  (interactive)
-  (load-file (buffer-file-name)))
+    "Execute file corresponding to current buffer"
+    (interactive)
+    (load-file (buffer-file-name)))
 
   (global-set-key (kbd "C-c C-c") 'load-current-file))
 
