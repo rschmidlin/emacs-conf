@@ -158,7 +158,7 @@
   (define-key boon-command-map (kbd "T") 'query-replace)
   (define-key boon-goto-map (kbd "i") 'counsel-imenu)
 
-  ; New keys on C-x group avoiding necessity of pressing control
+  ; New keys on C-x or C-c groups avoiding necessity of pressing control
   (global-set-key (kbd "C-x t") 'query-replace-regexp)
   (global-set-key (kbd "C-x ö") 'save-buffer)
   (global-set-key (kbd "C-x j") 'find-file)
@@ -166,6 +166,7 @@
   (global-set-key (kbd "C-x c") 'eval-last-sexp)
   (global-set-key (kbd "C-x y") 'comment-dwim)
   (global-set-key (kbd "C-x w") 'find-alternate-file)
+  (global-set-key (kbd "C-c C-r") 'counsel-ag)
 
   ; Buffer and window control
   (defun xah-new-empty-buffer ()
@@ -185,7 +186,7 @@
   (global-set-key (kbd "C-c C-k") 'delete-frame)
   (global-set-key (kbd "C-x l") 'xah-new-empty-buffer)
 
-  ; New keys on C-c group avoiding the necessity of pressing control
+  ; Help menu on J
   (defvar boon-help-map)
   (define-prefix-command 'boon-help-map)
   (set-keymap-parent boon-help-map help-map)
@@ -193,7 +194,6 @@
 
   ; Include extended indexer navigation for Boon
   (global-set-key (kbd "C-c C-z") 'xref-peek-definitions)
-
   (global-set-key (kbd "C-c C-f") 'ggtags-find-file)
   (global-set-key (kbd "C-c C-i") 'cscope-find-functions-calling-this-function)
   (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
