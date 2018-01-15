@@ -32,3 +32,11 @@
   :pin melpa
   :config
   (powerline-default-theme))
+
+(use-package tabbar-ruler
+  :ensure t
+  :pin melpa
+  :init
+  (setq tabbar-ruler-global-tabbar t) ; If you want tabbar
+  :config
+  (require 'tabbar-ruler))
