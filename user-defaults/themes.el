@@ -32,3 +32,31 @@
   :pin melpa
   :config
   (powerline-default-theme))
+
+(use-package tabbar-ruler
+  :ensure t
+  :pin melpa
+  :init
+  (setq tabbar-ruler-global-tabbar t))
+
+; Configure mouse to be more smooth
+;; (setq redisplay-dont-pause t
+;; 	  scroll-margin 1
+;; 	  scroll-step 1
+;; 	  scroll-conservatively 10000
+;; 	  scroll-preserve-screen-position 1)
+
+;; (setq mouse-wheel-follow-mouse 't)
+;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+(use-package sublimity
+  :ensure t
+  :pin melpa-stable
+  :init
+  (require 'sublimity)
+  (require 'sublimity-scroll)
+;; (require 'sublimity-map) ;; experimental
+;; (require 'sublimity-attractive)
+  :config
+  (sublimity-mode 1))
+
