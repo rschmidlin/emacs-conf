@@ -199,6 +199,9 @@
   (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
   (global-set-key (kbd "C-c C-p") 'cscope-find-this-symbol)
 
+  ; Start org-mode
+  (global-set-key (kbd "C-c C-w") 'org-capture)
+
   ; Load current file
   (defun load-current-file ()
     "Execute file corresponding to current buffer"
