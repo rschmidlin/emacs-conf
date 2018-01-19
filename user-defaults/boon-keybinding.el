@@ -8,10 +8,10 @@
 (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
 
                                         ; Also define commands for C-x that are available from x in Boon
-(define-key boon-keybinding-minor-mode-map (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
 (define-key boon-keybinding-minor-mode-map  (kbd "M-x") 'counsel-M-x)
 (define-key boon-command-map (kbd "x x") 'counsel-M-x)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x x") 'counsel-M-x)
+(global-set-key (kbd "C-x x") 'counsel-M-x)
 
                                         ; Define new commands for command mode
 (define-key boon-command-map (kbd ",") 'ace-window)
@@ -24,13 +24,13 @@
 (define-key boon-goto-map (kbd "i") 'counsel-imenu)
 
                                         ; New keys on C-x or C-c groups avoiding necessity of pressing control
-(define-key boon-keybinding-minor-mode-map (kbd "C-x t") 'query-replace-regexp)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x ö") 'save-buffer)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x j") 'find-file)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x p") 'recenter-top-bottom)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x c") 'eval-last-sexp)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x y") 'comment-dwim)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x w") 'find-alternate-file)
+(global-set-key (kbd "C-x t") 'query-replace-regexp)
+(global-set-key (kbd "C-x ö") 'save-buffer)
+(global-set-key (kbd "C-x j") 'find-file)
+(global-set-key (kbd "C-x p") 'recenter-top-bottom)
+(global-set-key (kbd "C-x c") 'eval-last-sexp)
+(global-set-key (kbd "C-x y") 'comment-dwim)
+(global-set-key (kbd "C-x w") 'find-alternate-file)
 (define-key boon-keybinding-minor-mode-map (kbd "C-c C-r") 'counsel-ag)
 
                                         ; Buffer and window control
@@ -49,7 +49,7 @@
 
 (define-key boon-keybinding-minor-mode-map (kbd "C-c C-l") 'make-frame)
 (define-key boon-keybinding-minor-mode-map (kbd "C-c C-k") 'delete-frame)
-(define-key boon-keybinding-minor-mode-map (kbd "C-x l") 'xah-new-empty-buffer)
+(global-set-key (kbd "C-x l") 'xah-new-empty-buffer)
 
                                         ; Help menu on J
 (defvar boon-help-map)
