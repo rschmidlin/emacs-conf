@@ -2,47 +2,47 @@
 (defvar input-mode "boon")
 (defvar input-keyboard-layout "de")
 
-; Specializations for system-wide rebind of AltGr to Alt_L
+                                        ; Specializations for system-wide rebind of AltGr to Alt_L
 (when (string= input-keyboard-layout "de")
   (defun insert-commercial-at()
-	"Insert a commercial at before point."
-	(interactive)
-	(insert "@"))
+    "Insert a commercial at before point."
+    (interactive)
+    (insert "@"))
 
   (defun insert-tilde()
-	"Insert a tilde before point."
-	(interactive)
-	(insert "~"))
+    "Insert a tilde before point."
+    (interactive)
+    (insert "~"))
 
   (defun insert-left-curly-brace()
-	"Insert a left curly brace before point."
-	(interactive)
-	(insert "{"))
+    "Insert a left curly brace before point."
+    (interactive)
+    (insert "{"))
 
   (defun insert-right-curly-brace()
-	"Insert a right curly brace before point."
-	(interactive)
-	(insert "}"))
+    "Insert a right curly brace before point."
+    (interactive)
+    (insert "}"))
 
   (defun insert-left-squared-bracket()
-	"Insert a left square bracket before point."
-	(interactive)
-	(insert "["))
+    "Insert a left square bracket before point."
+    (interactive)
+    (insert "["))
 
   (defun insert-right-squared-bracket()
-	"Insert a right square bracket before point."
-	(interactive)
-	(insert "]"))
+    "Insert a right square bracket before point."
+    (interactive)
+    (insert "]"))
 
   (defun insert-backslash()
-	"Insert a backslash before point."
-	(interactive)
-	(insert "\\"))
+    "Insert a backslash before point."
+    (interactive)
+    (insert "\\"))
 
   (defun insert-pipe()
-	"Insert a pipe before point."
-	(interactive)
-	(insert "|"))
+    "Insert a pipe before point."
+    (interactive)
+    (insert "|"))
 
   (global-set-key (kbd "C-M-q") 'insert-commercial-at)
   (global-set-key (kbd "C-M-+") 'insert-tilde)
@@ -53,7 +53,7 @@
   (global-set-key (kbd "C-M-ß") 'insert-backslash)
   (global-set-key (kbd "C-M-<") 'insert-pipe))
 
-; Help switching windows
+                                        ; Help switching windows
 (use-package ace-window
   :ensure t
   :pin melpa)
@@ -107,106 +107,42 @@
 
 (when (string= input-mode "boon")
   (use-package multiple-cursors
-	:ensure t
-	:pin melpa)
+    :ensure t
+    :pin melpa)
   
   (use-package expand-region
-	:ensure t
-	:pin melpa)
+    :ensure t
+    :pin melpa)
+  
+  (use-package powerline
+    :ensure t
+    :pin melpa)
 
-  (add-to-list 'load-path "~/.emacs.d/boon")
-  (require 'boon-qwertz) ;; for qwerty port
-  (require 'boon-powerline)
-  (boon-powerline-theme) ;; if you want use powerline with Boon
-  (boon-mode)
+  (use-package boon
+    :ensure t
+    :pin melpa
+    :init 
+    (require 'boon-qwertz) ;; for qwerty port
+    (require 'boon-powerline)
+    (require 'boon-keybinding)
+    :config
+    (boon-powerline-theme) ;; if you want use powerline with Boon
+    (boon-mode)
+    (boon-keybinding-minor-mode))
 
   ;; Define special modes where boon should be used instead
   (defvar boon-non-special-list
-  	'(dired-mode
-	  bookmark-bmenu-mode))
+    '(dired-mode
+      bookmark-bmenu-mode))
   (defvar boon-new-special-list
-	'())
-  
+    '())
+
   (defun use-special-mode-p (old-function &rest arguments)
     "Function to substitute boon-special-mode-p and disallow use of special mode for some major-modes"
-  	(or (memq major-mode boon-new-special-list)
-		(and (apply old-function arguments)
-			 (not (memq major-mode boon-non-special-list)))))
-  
-  (advice-add #'boon-special-mode-p :around #'use-special-mode-p)
+    (or (memq major-mode boon-new-special-list)
+        (and (apply old-function arguments)
+             (not (memq major-mode boon-non-special-list)))))
 
-  ; Use M-SPC to go back to command mode
-  (global-set-key (kbd "M-SPC") 'boon-set-command-state)
+  (advice-add #'boon-special-mode-p :around #'use-special-mode-p))
 
-  ; Special help keys like pressing escape for C-g, TAB for searching further
-  (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-  (define-key isearch-mode-map (kbd "TAB") 'isearch-repeat-forward)
-
-  ; Also define commands for C-x that are available from x in Boon
-  (global-set-key (kbd "C-x o") 'ace-window)
-  (global-set-key  (kbd "M-x") 'counsel-M-x)
-  (define-key boon-command-map (kbd "x x") 'counsel-M-x)
-  (global-set-key (kbd "C-x x") 'counsel-M-x)
-
-  ; Define new commands for command mode
-  (define-key boon-command-map (kbd ",") 'ace-window)
-  (define-key boon-command-map (kbd "r") 'swiper)
-  (define-key boon-command-map (kbd "m") 'split-window-below)
-  (define-key boon-command-map (kbd "M") 'split-window-right)
-  (define-key boon-command-map (kbd ".") 'delete-other-windows)
-  (define-key boon-command-map (kbd ":") 'delete-window)
-  (define-key boon-command-map (kbd "T") 'query-replace)
-  (define-key boon-goto-map (kbd "i") 'counsel-imenu)
-
-  ; New keys on C-x or C-c groups avoiding necessity of pressing control
-  (global-set-key (kbd "C-x t") 'query-replace-regexp)
-  (global-set-key (kbd "C-x ö") 'save-buffer)
-  (global-set-key (kbd "C-x j") 'find-file)
-  (global-set-key (kbd "C-x p") 'recenter-top-bottom)
-  (global-set-key (kbd "C-x c") 'eval-last-sexp)
-  (global-set-key (kbd "C-x y") 'comment-dwim)
-  (global-set-key (kbd "C-x w") 'find-alternate-file)
-  (global-set-key (kbd "C-c C-r") 'counsel-ag)
-
-  ; Buffer and window control
-  (defun xah-new-empty-buffer ()
-	"Create a new empty buffer.
-     New buffer will be named “untitled” or “untitled<2>”,
-     “untitled<3>”, etc.
-
-     URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
-     Version 2016-12-27"
-	(interactive)
-	(let (($buf (generate-new-buffer "untitled")))
-	  (switch-to-buffer $buf)
-	  (funcall initial-major-mode)
-	  (setq buffer-offer-save t)))
-
-  (global-set-key (kbd "C-c C-l") 'make-frame)
-  (global-set-key (kbd "C-c C-k") 'delete-frame)
-  (global-set-key (kbd "C-x l") 'xah-new-empty-buffer)
-
-  ; Help menu on J
-  (defvar boon-help-map)
-  (define-prefix-command 'boon-help-map)
-  (set-keymap-parent boon-help-map help-map)
-  (define-key boon-command-map (kbd "J") boon-help-map)
-
-  ; Include extended indexer navigation for Boon
-  (global-set-key (kbd "C-c C-z") 'xref-peek-definitions)
-  (global-set-key (kbd "C-c C-f") 'ggtags-find-file)
-  (global-set-key (kbd "C-c C-i") 'cscope-find-functions-calling-this-function)
-  (global-set-key (kbd "C-c C-o") 'cscope-find-called-functions)
-  (global-set-key (kbd "C-c C-p") 'cscope-find-this-symbol)
-
-  ; Start org-mode
-  (global-set-key (kbd "C-c C-w") 'org-capture)
-
-  ; Load current file
-  (defun load-current-file ()
-    "Execute file corresponding to current buffer"
-    (interactive)
-    (load-file (buffer-file-name)))
-
-  (global-set-key (kbd "C-c C-c") 'load-current-file))
 
