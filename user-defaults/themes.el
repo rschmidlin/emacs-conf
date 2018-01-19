@@ -49,14 +49,14 @@
 ;; (setq mouse-wheel-follow-mouse 't)
 ;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-(use-package sublimity
-  :ensure t
-  :pin melpa-stable
-  :init
-  (require 'sublimity)
-  (require 'sublimity-scroll)
-;; (require 'sublimity-map) ;; experimental
-;; (require 'sublimity-attractive)
-  :config
-  (sublimity-mode 1))
+;; (use-package sublimity
+;;   :ensure t
+;;   :pin melpa-stable
+;;   :init
+;;   (require 'sublimity)
+;;   (require 'sublimity-scroll)
+;; ;; (require 'sublimity-map) ;; experimental
+;; ;; (require 'sublimity-attractive)
+;;   :config
+;;   (sublimity-mode 1))
 
