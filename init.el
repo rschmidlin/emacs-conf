@@ -40,7 +40,6 @@
 (load "syntax")
 
 ; Configure indexers - ctags/cscope/ggtags
-(setq path-to-ctags "c:/Users/SESA452110/MyPrograms/bin/ctags.exe")
 (load "indexers")
 
 ; Configure project context 
@@ -74,7 +73,11 @@
 	("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-	(smex neotree org-plus-contrib cmake-font-lock cmake-mode elpy projectile magit ggtags xcscope yasnippet smartparens company flycheck powerline spacemacs-theme counsel flx which-key))))
+	(smex neotree org-plus-contrib cmake-font-lock cmake-mode elpy projectile magit ggtags xcscope yasnippet smartparens company flycheck powerline spacemacs-theme counsel flx which-key)))
+ '(safe-local-variable-values
+   (quote
+	((company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB//share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform")
+	 (company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/includes" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/Common/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/Platforms/VxWorks" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_AddOn_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
