@@ -1,24 +1,16 @@
 ; Use which-key
 (use-package which-key
-	     :ensure t
-	     :pin melpa
-	     :config
-	     (which-key-mode))
+  :config
+  (which-key-mode))
 
 ; Helping IVY with Flx
-(use-package flx
-  :ensure t
-  :pin melpa)
+(use-package flx)
 
 ; Include smex to sort recent commands first in counsel
-(use-package smex
-  :ensure t
-  :pin melpa)
+(use-package smex)
 
 ; Use IVY
 (use-package counsel
-	     :ensure t
-	     :pin melpa
 	     :init
 		 (require 'smex)
 	     (setq ivy-use-virtual-buffers t)

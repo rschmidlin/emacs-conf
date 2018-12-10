@@ -1,5 +1,5 @@
 ;; Select input mode - ergoemacs, xah-fly-keys, boon
-(defvar input-mode "boon")
+(defvar input-mode "ergoemacs")
 (defvar input-keyboard-layout "de")
 
                                         ; Specializations for system-wide rebind of AltGr to Alt_L
@@ -53,24 +53,19 @@
   (global-set-key (kbd "C-M-ß") 'insert-backslash)
   (global-set-key (kbd "C-M-<") 'insert-pipe))
 
-                                        ; Help switching windows
-(use-package ace-window
-  :ensure t
-  :pin melpa)
+                                       ; Help switching windows
+(use-package ace-window)
 
 ; Initialize ErgoEmacs, requires persistent-soft and undo-tree (at directory .emacs.d)
 (when (string= input-mode "ergoemacs")
   (use-package ergoemacs-mode
-	:ensure t
-	:pin melpa
 	:init
 	(setq ergoemacs-theme nil)
+	(setq ergoemacs-keyboard-layout "de")
 	:config
 	(ergoemacs-mode 1))
 
   (use-package god-mode
-	:ensure t
-	:pin melpa
 	:bind ("<escape>" . god-local-mode)
 	:init
 	(setq god-exempt-major-modes nil)

@@ -6,6 +6,7 @@
 ;; Install use-package for managing packages
 (add-to-list 'load-path "~/.emacs.d/use-package")
 (require 'use-package)
+(setq use-package-always-ensure t)
 
 ;; Configure proxy servers to be used
 (load-file "~/.emacs.d/proxy_conf.el")
@@ -52,8 +53,6 @@
 (load "semantics")
 
 (use-package neotree
-  :ensure t
-  :pin melpa
   :bind ("M-1" . neotree-toggle)
   :init
   (setq neo-theme 'nerd))
@@ -61,29 +60,20 @@
 (add-to-list 'load-path "~/.emacs.d/sr-speedbar")
 (require 'sr-speedbar)
 (global-set-key (kbd "M-2") 'sr-speedbar-toggle)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
 	("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-	(smex neotree org-plus-contrib cmake-font-lock cmake-mode elpy projectile magit ggtags xcscope yasnippet smartparens company flycheck powerline spacemacs-theme counsel flx which-key)))
- '(safe-local-variable-values
-   (quote
-	((company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB//share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform")
-	 (company-clang-arguments "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/share/h" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/system" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Workspace/ZC702_VSB/krnl/h/public" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/ULoader/includes" "-IC:/pcrt_ext_motionkernel_ci/m262_fw/Sources/Common/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/AbstractLayer/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PLC_Services/Export/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources/CoSeMa" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/AdaptionLayer" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/ExternalSources" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Manager" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/sercoshwmanager/Sources/Platform" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/Platforms/VxWorks" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_AddOn_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/CDS_Interface/CDS_Itf" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/Import/PCRT_Sdk/SDK/Includes" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel/GeneratedSources/Cds/Components" "-IC:/pcrt_ext_motionkernel_ci/pcrt_ext_motionkernel")))))
+	(neotree org-plus-contrib cmake-font-lock cmake-mode elpy projectile magit ggtags xcscope yasnippet smartparens company flycheck god-mode ergoemacs-mode ace-window visual-regexp powerline spacemacs-theme counsel smex flx which-key))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'narrow-to-page 'disabled nil)

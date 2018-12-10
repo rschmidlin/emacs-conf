@@ -16,20 +16,14 @@
 ;;   (ergoemacs-status-mode))
 
 (use-package spacemacs-theme
-  :ensure t
-  :pin melpa
   :config
   (load-theme 'spacemacs-dark))
 
 (use-package hl-line
-  :ensure t
-  :pin melpa
   :config
   (global-hl-line-mode t))
 
 (use-package powerline
-  :ensure t
-  :pin melpa
   :config
   (powerline-default-theme))
 

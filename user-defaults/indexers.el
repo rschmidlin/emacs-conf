@@ -1,7 +1,5 @@
 ; Use cscope
 (use-package xcscope
-	     :ensure t
-	     :pin melpa
 	     :init
 	     ; Configure Emacs to accept Cygwin executables
 	     (setq cscope-do-not-update-database t)
@@ -11,8 +9,6 @@
 
 ; Install ggtags for GNU Global (ctags/cscope substitution)
 (use-package ggtags
-  :ensure t
-  :pin melpa
   :init
   (add-hook 'c-mode-common-hook
           (lambda ()

@@ -15,5 +15,9 @@
 ; Make subwords with camel-case as single words
 (global-subword-mode t)
 
+(use-package visual-regexp
+  :config
+  (require 'visual-regexp))
+
 
 
